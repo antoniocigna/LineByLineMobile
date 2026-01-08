@@ -17,7 +17,7 @@
 
 	Questo file di input può essere ottenuto manualmente o usando il file LineByLineMobile_Build.html
 	Usando LineByLineMobile_Build.html  
-		Bisogna copiare (copia e incolla) il testo originale e la traduzione ottenuta da un tradaduttore automatico (es. google, bing, reverse)
+		Bisogna copiare (copia e incolla) il testo originale e la traduzione ottenuta da un traduttore automatico (es. google, bing, reverse)
 		I due testi vengono appaiati riga per riga e poi scritti in un solo file
 		
 		
