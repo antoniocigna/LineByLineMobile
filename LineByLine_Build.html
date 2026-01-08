@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="description" content="LineByLine Mobile - A tool to practice language listening a text line by line">
+	<meta name="license" content="license MIT: you can share and modify the software, but you must include the license file">
+	<meta name="author" content="Antonio Cigna">
+	<meta name="date" content="2026">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>LineByLine Mobile - Antonio Cigna 2026 - input file building</title>
+</head>
+
+<body id="id_body">
+	<div id="page1" class="onePage1" style="border:5px solid blue;">
+		<div id="id_h03" style="margin:auto; text-align:center;width:100%;    font-weight:bold;">
+			<br>
+			<div style="font-size:0.8em;text-align:center;">
+				<div style="font-size:1.2em;text-align:center;">Costruzione</div>
+				<div> di un</div>
+				<div style="font-size:1.2em; color:blue;">file bilingue</div>
+				<div>utilizzabile come input per l'applicazione </div>
+				<div style="font-size:1.2em; color:blue;">Line By Line Mobile</div>
+			</div>
+		</div>
+		<br>
+		<div style="width:100%;text-align:center;"><span id="idMsg1" style="color:red;font-weight:bold;"></span></div>
+		<div class="centerLex">
+			<textarea id="id_outTitle" placeholder="scrivi qui il titolo" cols="80" style="text-align:center; font-weight:bold; font-size:1.2em;"></textarea>
+		</div>
+		<br>
+		<div class="centerLex">
+			<div style="width:100%;text-align:center; color:blue; font-weight:bold;"> lingua da studiare
+				<br><span style="font-size:0.6em;font-weight:normal;">indentificativo di 2 caratteri es. en (inglese), fr (francese), de (tedesco) </span> </div>
+			<textarea id="id_outLang" cols="3" rows="1" style="text-align:center; font-weight:bold; font-size:1.2em;"></textarea>
+		</div>
+		<br>
+		<table id="id_table16" style="width:100%;border:1% solid red; border-collapse: collapse;">
+			<tr>
+				<th style="width:50%;border:0px solid black;text-align:center;"> <span id="m138-1" class="msg f_blue">Incolla qui sotto il testo nella lingua da studiare</span> <span id="id_laName2" style="display:none"></span> </th>
+				<th style="width:50%;border:0px solid black;text-align:center;"> <span id="m017" class="msg f_blue">Incolla qui sotto la traduzione del testo</span> </th>
+			</tr>
+			<tr>
+				<td style="width:50%;border:0px solid black;text-align:center;">
+					<div>
+						<div id="inpFileTypeOrig" style="display:none;"></div>
+						<textarea style="border:4px solid green;width:100%;" id="txt_pagOrig" rows="20" cols="150"> </textarea>
+					</div>
+				</td>
+				<td style="width:50%;border:0px solid black;text-align:center;">
+					<div>
+						<div id="inpFileTypeTran" style="display:none;"></div>
+						<textarea style="border:4px solid green;width:100%;" id="txt_pagTrad" rows="20" cols="150"></textarea>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<br>
+		<div>
+			<button onclick="onclick_get2TextArea()" style="width:20rem;"><span id="Xm004" class="msg">Conferma</span> </button>
+			<div id="id_msg16" style="display:none;font-size:1em;text-align:center;"></div>
+		</div>
+	</div>
+	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->
+	<div id="newPage1" class="onePage1" style="display:none;  border:5px solid blue;">
+		<div id="id_outTitle2" class="centerFlex" style="font-weight:bold;font-size:1.2em;"> </div>
+		<div id="id_commTitle" class="centerFlex" style="font-weight:bold;font-size:0.6em;"> Controlla che le righe di traduzione siano allineate con le corrispondenti originali.
+			<br>
+			<br>Se necessario è possibile con i pulsanti spostare in basso o in alto le righe di traduzione o le originali.
+			<br>(lo spostamento avviene in blocco dalla riga dove si trova il pulsante fino alla fine)
+			<br>E' possibile modificare il testo della traduzione e dell'originale. </div>
+		<br>
+		<table id="id_tabText" style="width:100%;border:1% solid red; border-collapse: collapse; text-align:left;">
+			<colgroup>
+				<col span="1" style="background-color: #f0f0f0;">
+					<col span="2" style="background-color: #f0f0f0;">
+						<col span="1">
+							<col span="2" style="background-color: #eaece5;">
+								<col span="1" style="background-color: #eaece5;">
+			</colgroup>
+			<tbody id="id_tabTextBody"> </tbody>
+		</table>
+		<div class="center">
+			<!-- <button onclick="onclick_do_download()">Conferma</button>-->
+			<button onclick='onclick_tts_getInput_New(document.getElementById("page1"))'>Conferma</button>
+		</div>
+	</div>
+	<div id="downloadPage" class="onePage1 centerFlex" style="display:none; border:5px solid blue; padding:0.2em;">
+		<div style="text-align:center;  font-size:1.2em;"> nella cartella dei <i>download</i>
+			<br> è stato scaricato il file
+			<br>
+			<br> <b><span id="id_downFileName" style="color:blue;">download file</span></b>
+			<br>
+			<br><span>che contiene il testo bilingue</span> </div>
+	</div>
+</body>
+
+<script>
+"use strict";
+/*  
+LineByLine: A tool to practice language comprehension
+Antonio Cigna 2026
+license MIT: you can share and modify the software, but you must include the license file 
+*/
+/* jshint strict: true */
+/* jshint esversion: 6 */
+/* jshint undef: true, unused: false */
+/* jshint -W033 */
+//---------------------
+
+const ele_outTitle = document.getElementById("id_outTitle");
+let level2Title = "file_input_scritto.txt";
+
+document.getElementById("downloadPage").style.display = "none";
+const IX_T_ORIG = 0; // col.index in table with id="id_tabText" 
+const IX_T_TRAN = 6; // col.index in table with id="id_tabText" 
+
+let ele_page1 = document.getElementById("page1");
+let ele_newPage1 = document.getElementById("newPage1");
+
+let ele_textAreaOrig = document.getElementById("txt_pagOrig");
+let ele_textAreaTran = document.getElementById("txt_pagTrad");
+
+let ele_tabTextBody = document.getElementById("id_tabTextBody");
+//----------------------------		
+
+//---------------------------------------
+function onclick_get2TextArea() {
+	const dangerColor = "yellow";
+	let eleErr = document.getElementById("idMsg1")
+	let eleLang2 = document.getElementById("id_outLang");
+	eleErr.innerHTML = "";
+	eleErr.style.backgroundColor = null;
+	eleLang2.style.backgroundColor = null;
+	ele_outTitle.style.backgroundColor = null;
+	ele_textAreaOrig.style.backgroundColor = null;
+	ele_textAreaTran.style.backgroundColor = null;
+	console.log("%conclick_get2TextArea ", "color:blue;")
+
+	console.log(" 1 onclick_get2TextArea eleErr= ", eleErr.innerHTML)
+
+	//const titleMiss = "manca il titolo, scrivilo qui per andare avanti";
+	level2Title = ele_outTitle.value;
+	if (level2Title == "") {
+		eleErr.innerHTML = "manca il titolo";
+		eleErr.style.backgroundColor = dangerColor;
+
+		ele_outTitle.style.backgroundColor = dangerColor;
+		return;
+	}
+	let lang2 = eleLang2.value.trim();
+	if (lang2 == "") {
+		eleErr.innerHTML = "manca l'indentificativo della lingua da studiare";
+		eleErr.style.backgroundColor = dangerColor;
+		eleLang2.style.backgroundColor = dangerColor;
+		return;
+	}
+	if (lang2.length != 2) {
+		eleErr.innerHTML = "la lunghezza dell'indentificativo della lingua da studiare è diversa da 2";
+		eleErr.style.backgroundColor = dangerColor;
+		eleLang2.style.backgroundColor = dangerColor;
+		return;
+	}
+	level2Title = "lbl_" + lang2 + "_" + level2Title.trim();
+
+	document.getElementById("id_outTitle2").innerHTML = level2Title;
+
+	ele_outTitle.style.color = "black";
+
+	console.log("2 conclick_get2TextArea ")
+
+	if (ele_textAreaOrig.value.trim().length == 0) {
+		eleErr.innerHTML = "manca il testo in lingua originale"
+		eleErr.style.backgroundColor = dangerColor;
+		ele_textAreaOrig.style.backgroundColor = dangerColor;
+		return;
+	}
+	if (ele_textAreaTran.value.trim().length == 0) {
+		eleErr.innerHTML = "manca la traduzione"
+		eleErr.style.backgroundColor = dangerColor;
+		ele_textAreaTran.style.backgroundColor = dangerColor;
+		return;
+	}
+	const arrTxtOrig = fun_txt2row(ele_textAreaOrig.value);
+	const arrTxtTran = fun_txt2row(ele_textAreaTran.value);
+	const lenO = arrTxtOrig.length;
+	const lenT = arrTxtTran.length;
+	console.log("3 conclick_get2TextArea lenO=", lenO, " lenT=", lenT)
+	var z1;
+	for (z1 = lenO + 1; z1 <= lenT; z1++) {
+		arrTxtOrig.push("");
+	}
+	for (z1 = lenT + 1; z1 <= lenO; z1++) {
+		arrTxtTran.push("");
+	}
+
+	let str1 = ""; //  "<tbody> \n";
+	for (z1 = 0; z1 < arrTxtOrig.length; z1++) {
+		str1 += fun_newTrRowString(z1, arrTxtOrig[z1], arrTxtTran[z1]);
+	}
+	//str1 += "</tbody> \n";
+	//ele_tabText.innerHTML = str1;
+	ele_tabTextBody.innerHTML = str1;
+
+	ele_page1.style.display = "none";
+	ele_newPage1.style.display = "block";
+
+	console.log("4 conclick_get2TextArea esegui onclick_tts_getInput_New")
+		//onclick_tts_getInput_New(document.getElementById("page1"));  // signal  conferma button 
+
+
+} // end of onclick_get2TextArea
+
+//----------------------------------------
+
+//----------------------------------------
+
+function onclick_moveHalfRowUp(this1, ix_half_row) {
+	//
+	//  // move orig. or transl. row column UP   ( all rows from index z1 to end ) 
+	//
+	const eleTD = this1.parentElement;
+	const eleTR = eleTD.parentElement;
+	let z1 = eleTR.rowIndex;
+	console.log("moveHalf Up   eleTR.rowIndex=", eleTR.rowIndex, "  z1=", z1);
+
+	//const eleTD_orig = eleTR.children[ix_half_row];
+
+	const ele_TBODY = eleTR.parentElement;
+	let numTR = ele_TBODY.children.length;
+	console.log("  esistono ", numTR, " righe");
+
+	if (numTR < 2) console.log("ele_TBODY.parentElement=", ele_TBODY.parentElement.outerHTML.replaceAll("<tr>", "\n<tr>").replaceAll("<td>", "\n<td>"))
+	let from_z, to_z;
+	let ele_from, ele_to;
+	const first_to_z = z1 - 1;
+	let swOne = false;
+
+	if (z1 == 0) {
+		ele_to = ele_TBODY.children[0].children[ix_half_row];
+		if (ele_to.innerHTML != "") {
+			insert_TR_row(ele_TBODY, 0, "", "");
+			z1 = eleTR.rowIndex;
+		}
+	}
+	numTR = ele_TBODY.children.length;
+
+	for (from_z = z1; from_z < numTR; from_z++) { // move one by one from the row number.z1 to the last    
+		to_z = from_z - 1;
+		if (to_z >= numTR) {
+			break;
+		}
+		//console.log("Up z1=", z1, " from_z=", from_z ,  "  to_z=", to_z);
+		ele_from = ele_TBODY.children[from_z].children[ix_half_row];
+		ele_to = ele_TBODY.children[to_z].children[ix_half_row];
+		if (to_z == first_to_z) {
+			if (ele_to.innerHTML == "") {
+				ele_to.innerHTML = ele_from.innerHTML.trim();
+			} else {
+				ele_to.innerHTML = (ele_to.innerHTML + "<br>" + ele_from.innerHTML).trim();
+			}
+		} else {
+			ele_to.innerHTML = ele_from.innerHTML.trim();
+		}
+		swOne = true;
+	}
+	if (swOne) ele_from.innerHTML = "";
+
+} // end of onclick_halfRowUp
+
+//----------------------------------
+
+function onclick_moveHalfRowDown(this1, ix_half_row) {
+	//
+	// move orig. or transl. row column DOWN  ( all rows from index z1 to end ) 
+	//
+	const eleTD = this1.parentElement;
+	const eleTR = eleTD.parentElement;
+	const z1 = eleTR.rowIndex;
+	//const eleTD_orig = eleTR.children[ix_half_row];
+
+	const ele_TBODY = eleTR.parentElement;
+
+	let numTR = ele_TBODY.children.length;
+
+	let from_z, to_z;
+	let ele_from, ele_to;
+
+	to_z = numTR - 1;
+	ele_to = ele_TBODY.children[to_z].children[ix_half_row];
+	if (ele_to.innerHTML != "") {
+		insert_TR_row(ele_TBODY, numTR, "", "");
+		numTR = ele_TBODY.children.length;
+	}
+
+	for (from_z = numTR - 2; from_z >= z1; from_z--) { // move one by one row from the lower one to the number z1 
+		to_z = from_z + 1;
+		ele_from = ele_TBODY.children[from_z].children[ix_half_row];
+		ele_to = ele_TBODY.children[to_z].children[ix_half_row];
+		ele_to.innerHTML = ele_from.innerHTML;
+	}
+
+	ele_from = ele_TBODY.children[z1].children[ix_half_row];
+	ele_from.innerHTML = "";
+
+} // end of onclick_moveHalfRowDown
+
+//----------------------------------------
+//----------------------------------
+
+function onclick_removeRow(this1, ix_leftHalf_row, ix_rightHalf_row) {
+	//
+	// remove empty row 
+	//
+	const eleTD = this1.parentElement;
+	const eleTR = eleTD.parentElement;
+	const z1 = eleTR.rowIndex;
+	const ele_TBODY = eleTR.parentElement;
+	const eleTab = ele_TBODY.parentElement;
+	let ele_to1, ele_to2;
+	ele_to1 = ele_TBODY.children[z1].children[ix_leftHalf_row];
+	ele_to2 = ele_TBODY.children[z1].children[ix_rightHalf_row];
+
+	if ((ele_to1.innerHTML != "") || (ele_to2.innerHTML != "")) {
+		return; // only if both halves are empty
+	}
+
+	eleTab.deleteRow(z1); // questa istruzione falsa gli indici  delle righe tabella in html  che contengono onclick ... indice z1 	 
+} // end of onclick_removeRow
+
+//----------------------------------------
+
+//---------------------
+
+function insert_TR_row(ele_TBODY, z1, txtOrig, txtTran) {
+
+	var row = ele_TBODY.insertRow(z1);
+	row.innerHTML = fun_newTrRowString(z1, txtOrig, txtTran);
+
+} // end of insert_TR_row
+
+//----------------------
+//----------------------
+
+function fun_newTrRowString(z1, txtOrig, txtTran) {
+	//
+	//	build new tr line 
+	//
+	var str1 = "";
+	str1 += '<tr>';
+	str1 += '<td contenteditable>' + txtOrig.trim() + '</td>';
+	str1 += '<td><button onclick="onclick_moveHalfRowUp(   this,' + IX_T_ORIG + ')" class="butTabText">&#8679;</button></td>';
+	str1 += '<td><button onclick="onclick_moveHalfRowDown( this,' + IX_T_ORIG + ')" class="butTabText" >&#8681;</button></td>';
+
+	str1 += '<td><button onclick="onclick_removeRow(       this,' + IX_T_ORIG + ',' + IX_T_TRAN + ')" class="butTabText">&#x1F5D1;</button></td>';
+
+	str1 += '<td><button onclick="onclick_moveHalfRowUp(   this,' + IX_T_TRAN + ')" class="butTabText">&#8679;</button></td>';
+	str1 += '<td><button onclick="onclick_moveHalfRowDown( this,' + IX_T_TRAN + ')" class="butTabText">&#8681;</button></td>';
+	str1 += '<td contenteditable>' + txtTran.trim() + '</td>';
+	str1 += '</tr> \n';
+	return str1;
+
+} // end of fun_newTrRowString 
+
+//---------------------------------------
+function fun_txt2row(str1) {	
+	
+	const str3 = str1.replaceAll(". ", ".\n").
+	replaceAll("! ", "!\n").replaceAll("? ", "?\n").
+	replaceAll("; ", ";\n");
+	return str3.split("\n");
+
+} // end of fun_txt2row 
+//------------------------------------------------------------------------
+
+function onclick_tts_getInput_New(elepage) {
+
+	document.getElementById("page1").style.display = "none";
+	document.getElementById("newPage1").style.display = "none";
+	document.getElementById("downloadPage").style.display = "flex";
+
+	let eleTbody = document.getElementById("id_tabTextBody")
+	let outStr = ""
+	let txt1, txt2
+	for (let h = 0; h < eleTbody.children.length; h++) {
+		let eleTr = eleTbody.children[h]
+		txt1 = eleTr.children[0].innerHTML.trim()
+		txt2 = eleTr.children[6].innerHTML.trim()
+		if ((txt1 == "") && (txt2 == "")) continue
+		outStr += txt1 + "\n" + txt2 + "\n\n";
+	}
+
+	download(level2Title, outStr);
+	document.getElementById("id_downFileName").innerHTML = level2Title
+
+} // end of preparaTestoBilingue
+//------------------------------------------
+function download(filename, text) {
+	console.log("esegue downLoad()");
+	var element = document.createElement('a');
+
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,' +
+		encodeURIComponent(text));
+
+	console.log("element.setAttribute('download'," + filename + ")");
+
+	element.setAttribute('download', filename);
+
+	element.style.display = "none";
+	document.body.appendChild(element);
+	element.click();
+	document.body.removeChild(element);
+}
+
+//------------------------------
+</script>
+
+<style>
+:root {
+  --main-bg-color: #fefbd8;
+}
+body,
+html {
+  background-color: var(--main-bg-color);
+  margin: auto;
+  height: 98%;
+  width: 98%;
+  margin: auto;
+  vertical-align: middle;
+  padding: 0;
+  text-align: center;
+}
+html {
+  font-size: 1.5em;
+}
+h1 {
+  text-align: center;
+}
+input,
+textarea {
+  background-color: #d5daf3;
+}
+td {
+  margin: auto;
+  vertical-align: top;
+  padding: 0 1em 0 1em;
+  border: 0 solid #000;
+}
+div {
+  margin: auto;
+  vertical-align: top;
+  text-align: center;
+}
+#id_h11 {
+  font-size: 0.8em;
+  line-height: 80%;
+}
+.button {
+  background-color: #0015d994;
+  border: 1px solid #000;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.4em;
+  margin: auto;
+  cursor: pointer;
+  border-radius: 1.4em;
+  box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.6);
+}
+.button:hover {
+  background-color: #00042dbf;
+}
+.TD2 {
+  text-align: left;
+  width: 25%;
+  height: 50%;
+  border: 1px solid #000;
+}
+.TD3 {
+  text-align: left;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #000;
+}
+.input1 {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.td1 {
+  text-align: center;
+  border: 0 solid green;
+  vertical-align: middle;
+  margin: auto;
+}
+.border_red {
+  border: 0 solid red;
+}
+.border_green {
+  border: 0 solid green;
+}
+.border_1black {
+  border: 1px solid #000;
+}
+.h100 {
+  height: 100%;
+}
+.h98 {
+  height: 98%;
+}
+.h95 {
+  height: 95%;
+}
+.display_none {
+  display: none;
+}
+.center {
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+}
+.centerFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.left {
+  text-align: left;
+}
+.width100 {
+  min-width: 100%;
+}
+.TD4 {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}
+.border {
+  border: 1px solid green;
+}
+.o_txt {
+  text-align: center;
+}
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+.onePage1 {
+  width: calc(100vw - 30px);
+  height: calc(100vh - 30px);
+  border: 5px solid #000;
+}
+.f_blue {
+  color: #00f;
+}
+#id_tabText td {
+  border: 1px solid green;
+}
+.butTabText {
+  font-size:1em; font-weight:bold;  margin-top:0.5em; margin-bottom:1.0em;
+}
+
+</style>
+
+
+</html>

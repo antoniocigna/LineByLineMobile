@@ -1,0 +1,2098 @@
+<!DOCTYPE html>
+<!-- prova formato -->
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="description" content="LineByLine Mobile - A tool to practice language listening a text libe by line">
+      <meta name="license" content="license MIT: you can share and modify the software, but you must include the license file">
+      <meta name="author" content="Antonio Cigna">
+      <meta name="date" content="2026">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>LineByLine Mobile- Antonio Cigna 2026</title>
+   </head>
+   <body style="text-align:left; border:0px solid green;">
+      <div id="idUpper"  style="display:block;text-align:left;">
+         <div style="font-size:2.0em;font-weight:bold;color:blue;">LineByLine Mobile </div>
+		 <div style="font-size:0.8em;font-weight:bold;color:blue;">Antonio Cigna 2026</div>
+		 <div style="font-size:1.0em;font-weight:bold;">Esercizi di comprensione di un testo in lingua straniera <br>
+			mediante ascolto o traduzione di una riga o una parola per volta 
+		 </div>
+        <br>
+         <div>
+            <b>Scegli il file da studiare</b>
+            <br>
+            <input id="filetesto1" type="file" onchange="f_onclick_readFile(this)">
+            <div id="id_msg1" style="margin:1em;"></div>
+			<div id="id_msg0" style="margin:1em;"></div>
+         </div>
+		 <div id="id_msg2" style="color:blue; font-weight:bold;"></div>
+		
+	<script>
+		function showDiv(this1) {
+			let eleNext = this1.nextElementSibling; 
+			if (eleNext.style.display == "none") eleNext.style.display = "block" 
+			else eleNext.style.display = "none" 
+		}
+
+	</script>	
+	<div style="border:1px solid black; font-size:0.8em;padding: 0.2em;">
+		<div style="text-align:center;"><b>HELP</b></div>
+		<button onclick="showDiv(this)"><b>Nome e Contenuto del file</b></button>  
+		<div style="border:0px solid black;display:none;">
+			<b>Nome del file</b>
+				<div style="">L'inizio del nome del file deve iniziare con <b>lbl</b> seguito dalla sigla della lingua di origine tra due "_"</div>
+				<div style="padding-left:3em; font-size:0.9em;">es.: lbl_en_01_A Tail of Two Cats,  lbl_en_02_Of Mice and Men, lbl_de_03_Mord in Venedig </div>   
+			<b>Contenuto del file</b>
+				<div style="">il file da selezionare deve essere contenere un testo composto da gruppi di 3 righe</div>
+				<div style="padding-left:3em; font-size:0.9em;">1 riga in lingua originale</div>
+				<div style="padding-left:3em; font-size:0.9em;">1 riga con la traduzione</div> 
+				<div style="padding-left:3em; font-size:0.9em;">1 riga vuota</div> 				
+		</div>
+		
+		<div style="border:0px solid black;">
+			<button onclick="showDiv(this)"><b>Pulsanti</b></button>  
+			<div style="display:none;">
+			<table style="text-align:left;">
+				<tr><td><button class="buttonTD2"><span style="">🗣</span><span style="font-size:0.9em;">+</span></button></td> 
+					<td style="text-align:left;">lettura della riga in lingua originale
+					(la riga interessata o qualunque testo selezionato anche se in righe diverse)  	
+				</td></tr>
+				<tr><td><button class="buttonTD2"><span style="">🗣</span><span style="font-size:0.9em;">𝄐</span></button></td> 
+					<td style="text-align:left;">lettura con separazione delle parole
+						(nella riga interessata o in qualunque testo selezionato anche se in righe diverse)  
+					</td></tr>
+				
+				<tr><td><button class="buttonTD2"><span style="">📖</span></button></td> 
+					<td style="text-align:left;">la riga in lingua originale è visibile
+						(se si preme questo pulsante il testo scompare, ogni parola è sostituita da asterischi)
+					</td></tr>
+				<tr><td><button class="buttonTD2"><span style="">📕</span></button></td> 
+					<td style="text-align:left;">il testo non è leggibile,  ogni parola appare come un gruppo di asterischi
+						(se si preme questo pulsante  il testo ritorna leggibile) 				
+					</td></tr>
+				
+				<tr><td><button class="buttonTD2"><span style="font-weight:bold;">T</span></button></td> 
+				<td style="text-align:left;">la traduzione è visibile
+					(se si preme questo pulsante la traduzione scompare)
+				</td></tr>
+				<tr><td><button class="buttonTD2"><span style="font-weight:bold;min-width:4em;">t?</span></button></td> 
+				<td style="text-align:left;">la traduzione è nascosta
+					(se si preme questo pulsante la traduzione diventa leggibile)
+				</td></tr>
+			</table>		
+			<div style="">Per ascoltare la lettura di una riga in lingua originale premere il tasto 
+						<button class="buttonTD2"><span style="">🗣</span><span style="font-size:0.9em;">+</span></button></div>
+			<div style="padding-left:3em; ">per ascoltarlo separando le parole premere il tasto 
+				<button class="buttonTD2"><span style="">🗣</span><span style="font-size:0.9em;">𝄐</span></button></div>
+			<div style="padding-left:3em; ">per variare la velocità di lettura premi i tasti 
+							<button  type="button"><span>-</span></button> o 
+							<button  type="button"><span>+</span></button> 
+			</div>
+			
+			<span><b>ATTENZIONE</b></span>
+			<span>La prima volta il tasto <button class="buttonTD2"><span style="">🗣</span></button> sembra non funzionare, 
+				questo perchè viene utilizzato per caricare le voci sintetiche.
+				<br>Aspettare un poco e riprovare. Dopo la prima volta la risposta è immediata.
+			</span>
+			
+			</div>
+		</div>
+		
+		
+		<div style="border:0px solid black;">
+			<button onclick="showDiv(this)"><b>Esercizi di comprensione orale</b></button>  
+			<div style="display:none;">
+			<div style="padding-left:3em; ">nascondere tutte le righe usando il tasto <button class="buttonTD2"><span style="">📖</span></button> 
+					che si trova in alto prima di tutte le righe</div>
+			<div style="padding-left:3em; ">ascoltare senza leggere, una riga per volta e se ci sono problemi provare con una parola per volta o a velocità ridotta </div>
+			<div style="padding-left:3em; ">se si vogliono riascoltare soltanto alcune parole, selezionarle e poi usare uno dei due tasti 
+				<button class="buttonTD2"><span style="">🗣</span></button> </div>
+			<div style="padding-left:3em; ">E' possibile ascoltare più di una riga selezionando tutto il testo interessato e poi usare i tasti
+				<button class="buttonTD2"><span style="">🗣</span></button></div> 
+			</div>
+		</div>
+		
+		<div style="border:0px solid black; ">
+			<button onclick="showDiv(this)"><b>Esercizi di comprensione dello scritto</b></button>  
+			<div style="display:none;">
+				<div style="padding-left:3em;">nascondere la traduzione se visibile usando il tasto <button class="buttonTD2"><span style="font-weight:bold;">T</span></button>
+				</div>
+				<div style="padding-left:3em;">leggere la riga originale e tentare di comprenderne il significato</div>
+				<div style="padding-left:3em;">verificare rendendo visibile la traduzione usando il tasto <span style="font-weight:bold;min-width:4em;">t?</span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		 <div id="id_lang2" style="display:none;"></div>
+		 <div id="id_localLang2" style="display:none;"></div>
+		 <div id="idUpper2" style="display:none;">
+			 <div id="id_voxLangDisplay" style="margin-top:0.5em;text-align:left;width:50%;">
+			 </div>		
+			<div style="width:100%;" >
+				<span class="msg">font-size </span>  
+				<span>0.74</span>em	&nbsp;&nbsp;
+				<button id="idFontSize" type="button" onclick="onclick_change_fontSize(this,-0.02,0.50,2.5,4)">-</button>&nbsp;&nbsp;
+				<button type="button" onclick="onclick_change_fontSize(this, 0.02,0.50,2.5,4)">+</button>
+			 </div>	
+			<div style="border:1px solid black;padding:0 0.5em;">
+                  <span id="m126" class="msg">Tono &nbsp;&nbsp;</span></span>
+                  <span style="width:0.5em;padding:0;">1</span>
+                  &nbsp;&nbsp;
+				  <button type="button" onclick="onclick_tts_changePitch(this,-0.1, 0.1, 1.8, 3)">-</button>&nbsp;&nbsp;
+				  <button type="button" onclick="onclick_tts_changePitch(this, 0.1, 0.1, 1.8, 3)">+</button>			 
+               </div>
+		 </div>
+		
+      </div>
+      <div id="id_div20" class="divPage" style="display:none;  border:0px solid blue;">		 
+		 <table id="id_tabSample" style="display:none;">
+            <tbody>				
+               <tr id="idtr_§x1§" style="background-color: lightgrey; ">
+                  <td style="text-align:left; border-top: 3px solid red;">
+					<div style="display:flex;flex-direction: column;">
+						<div style="display:flex;">								
+							<button class="buttonTD2 budSpace" onclick="f_onclick_playSynthVoice_row3(this,§x1§,false,true)">
+								<span style="">🗣</span><span style="font-size:0.9em;">+</span>
+							</button>
+							<button class="buttonTD2 budSpace" onclick="f_onclick_playSynthVoice_row3(this,§x1§,true,true)">
+								<span style="">🗣</span><span style="font-size:0.9em;">𝄐</span>
+							</button>
+							<button class="buttonTD2 budSpace" id="idb_§x1§" onclick="showHide(this,§x1§)">
+								<span style="display:block;">📖</span>
+								<span style="display:none;">📕</span>
+							</button> 
+							<button class="buttonTD2 budSpace" id="idbT_§x1§" onclick="showTraduz(this,§x1§)">
+								<span style="display:none;font-weight:bold;"><span style="font-weight:bold;">T</span></span>
+								<span style="display:block;font-weight:bold;"><span style="font-weight:bold;min-width:4em;">t?</span></span>
+							</button>							
+						</div>  
+						
+
+					
+						<div style="position: relative;">
+							
+							<div style="position: absolute; top: -0.7em; left:-0.6em;">
+								<span class="minFont">::</span>
+								<span id="idNumTr" class="numTr">§x1§</span>
+								<span class="minFont">[</span>
+							</div>	
+							
+							<table>
+								<tbody>
+								   <tr> 								
+									  <td class="suboLine  maxTdLen">
+										 <div>
+											<span id="idc_§x1§" style="display:block;">§orig§</span>									
+											<span class="minFont">]</span>
+											<span id="idca_§x1§" style="display:none;font-size:0.8em;"></span>
+										 </div>								  
+									  </td>
+								   </tr>
+								   <tr>
+									  <td class="tranLine">
+										 <span id="idt_§x1§" style="visibility:hidden;">§traduz§</span>							
+									  </td>
+								   </tr>
+								</tbody>
+							</table>
+						</div>	
+					</div>
+                  </td>
+               </tr>               
+            </tbody>
+         </table>
+		 
+      </div>
+	
+	 <script> 
+	  function upperShowHide(this1) {
+			if (this1.children[0].style.display == "block") {  
+				this1.children[0].style.display = "none"
+				this1.children[1].style.display = "block"
+				document.getElementById('idUpper').style.display = 'none'
+			} else {
+				this1.children[0].style.display = "block"
+				this1.children[1].style.display = "none"
+				document.getElementById('idUpper').style.display = 'block'
+			}
+	   } 
+	  </SCRIPT>
+      <div id="id_div30" style="display: none; text-align: left; border: 5px solid violet;height:100%;">
+         <div  style="display: block; text-align: left; border: 0px solid blue;width:98%;">
+				 <div style="">
+						<button  class="buttonTD3" id="idHSupper" onclick="upperShowHide(this)">							
+								<span style="display:block;">nascondi sopra</span>														
+								<span style="display:none;">mostra sopra</span>
+						</button>
+						&nbsp;&nbsp;
+						<button  class="buttonTD2" onclick="showRandomRow()">una riga a caso</button> 
+				</div> 
+			
+               
+			   
+               <div style="border:0px solid black;padding:0 0.5em;padding:0.5em;">
+                  <span id="m127" class="msg">Velocità </span></span>
+                  <span style="width:0.5em;padding:0;">1</span>
+                  &nbsp;&nbsp;
+				  <button type="button" onclick="onclick_tts_changeRate(this,-0.1, 0.1, 2.0, 3)">-</button>&nbsp;&nbsp;
+				  <button type="button" onclick="onclick_tts_changeRate(this, 0.1, 0.1, 2.0, 3)">+</button>                  
+               </div>
+               <div style="border:0px solid black;display:flex;padding:0.5em;">
+                  <div><button id="id_sp_pause"   class="buttonTD3" onclick="onclick_tts_speech_pause()"><span id="m128" class="msg">Pausa</span></button></div>
+                  <div><button id="id_sp_resume"  class="buttonTD3" onclick="onclick_tts_speech_resume()"><span id="m129" class="msg">Riprendi</span></button></div>
+                  <div><button id="id_sp_cancel"  class="buttonTD3" onclick="onclick_tts_speech_cancel()"><span id="m130" class="msg">Annulla</span></button></div>
+                  <div>
+						<button id="id_sp_readAll"  class="buttonTD3" style="background-color:white;" onclick="onclick_showHideAll(this)">
+								<span style="display:block;">📖</span>
+								<span style="display:none;">📕</span>
+						</button>               
+                  </div>
+               </div>
+         </div>
+		 
+         <div id="id_section_row" style="margin: auto;text-align:center;   margin:0;
+            display:flex;justify-content: center;   width:98%;	
+            height:77%;
+            overflow-y: auto;
+            border:1px solid blue; ">
+            <table id="id_tab1" class="orig_txt noSelect" style="text-align: left; vertical-align: top;  border:0px solid red; 
+               width:100%;padding:0.1em;
+               background-color: rgb(243, 200, 157);">
+               <thead id="id_tabSub_th">                          
+               </thead>
+               <tbody id="id_tbody1">
+               </tbody>
+            </table>
+         </div>
+      </div>
+	  
+	</body>  
+	  
+      <style>
+         :root {
+         --main-bg-color: #fefbd8
+         }
+         body,
+         html {
+         background-color: var(--main-bg-color);
+         margin: auto;
+         height: 99%;
+         width: 98%;
+         margin: auto;
+         vertical-align: middle;
+         padding: 0;
+         text-align: center
+         }
+         html {  
+         font-size: 1.5em
+         }
+         h1 {
+         text-align: center;
+         }
+         input,
+         textarea {
+         background-color: #d5daf3;
+         }
+         td {
+         vertical-align: top;
+         text-align:     center;
+         }
+         .header_1{		
+         text-align:center;
+         vertical-align: middle; 
+         color:black;
+         font-size:0.5em;
+         width:1em;
+         font-weight: bold;
+         }
+         .buttonTD3 {
+         background-color: lightgrey;
+         border: 1px solid #000000;
+         color: black;
+         text-align:center;
+         padding-left:0.3em;
+         padding-right:0.3em;   
+         border-radius: 1.4em;
+         box-shadow: 0.5em 0.5em 0.5em rgba(0,0,0,0.6); 
+         min-width:4em;
+         min-height:2em;
+         }
+		 
+		  .buttonTD2 {
+         background-color: white;
+         border: 1px solid #000000;
+         color: black;
+         text-align:center;
+         padding-left:0.3em;
+         padding-right:0.3em;   
+         border-radius: 1.4em;
+         box-shadow: 0.5em 0.5em 0.5em rgba(0,0,0,0.6); 
+         /*min-width:3em; min-height:3em;**/
+         }
+         .buttonTD2:hover {
+         background-color: orange;
+         }
+         .suboLine {		
+         vertical-align:bottom; 
+         color: blue;
+         font-style: oblique;
+         text-align:left; 
+         font-weight:bold;
+         -webkit-user-select: text;
+         user-select: text;
+         }	
+         .tranLine {
+         color: black;
+         font-weight:bold;
+         font-weight: normal;
+         font-style: oblique;	
+         text-align:left; 
+         }
+         .minFont{     
+			font-size:0.0001;
+			color: lightgrey;
+         }
+		  .numTr{
+         font-size:0.5em;
+		 color: black;
+         }
+         .maxTdLen{
+         width:95%;text-align:left;
+         }
+		
+         .noSelect {
+         -webkit-user-select: none; /* Safari */
+         user-select: none; /* Standard syntax */
+         }
+         .yesSelect {
+         -webkit-user-select: text;
+         user-select: text;
+         }
+		 
+
+		 
+	.budSpace {
+	margin:0.5em;
+	font-size:1.0em;
+}	 
+		 
+      </style>
+      <script>
+         "use strict";
+         /*  
+         LineByLine: A tool to practice language comprehension
+         Antonio Cigna 2026
+         license MIT: you can share and modify the software, but you must include the license file 
+         */
+         /* jshint strict: true */
+         /* jshint esversion: 6 */
+         /* jshint undef: true, unused: false */
+         /* jshint -W033 */
+         //----------------------------------------------
+         //console.log("location.pathname=", location.pathname)
+         /**
+         var currScript = document.currentScript.src;
+         var bar1 = currScript.lastIndexOf("\\");
+         var bar2 = currScript.lastIndexOf("/");
+         //console.log("currScript=", currScript)
+         //console.log("LOADED file SCRIPT " + currScript.substring(1 + Math.max(bar1, bar2)));
+         ***/
+         //-----------------------------------------------
+         onclick_change_fontSize( document.getElementById("idFontSize"), 0,0,999,4); 
+		 
+		let eleMsg0 = document.getElementById("id_msg0");
+		let okLocalStor = false
+		// Check browser support
+		if (typeof(Storage) !== "undefined") {
+			eleMsg0.innerHTML = ""; //  local storage funziona";
+			okLocalStor = true;
+		} else {
+		  eleMsg0.innerHTML = "Sorry, no Web storage support!";
+		}	
+ 
+		 
+         
+         let inpFileName = ""
+         let clock_timer_symb = "&#x23f1;";
+         let playLoop_symb = "&infin;";
+         let speakinghead_symb = "&#128483;";
+         let magnifyingGlass_symb = "&#128270;";
+         let pause_symb = "&#x23F8;";
+         let play_symb = "&#x23F5;";
+         let word_pause_symb = "&#x1d110;";
+         
+         let openbook_symb = "&#128214;";
+         let closedbook_symb = "&#128213;";
+         let hide_translation_symb = '<span style="font-weight:bold;min-width:4em;">t?</span></span>';
+         let show_translation_symb = '<span style="font-weight:bold;">T</span></span>';
+         let left_arrow_symb = "&#8592;";
+         let right_arrow_symb = "&#8594;";
+         let breakwords_symb = "/|/";
+         //------------------------------------------------------------
+         let languageToStudy2 = "" // id lingua del testo 
+         let myLocalLanguage =  navigator.language.substr(0,2); // lingua local (es. it-IT )
+         let prototype_tr_tts = "";
+         let sw_active_show_lastSpokenLineTranslation = false;
+         //--------------------------------------
+         let sw_tts = false;
+         let sw_tts2 = false;
+         let last_BoldRow;
+         
+         //-------------------------------------------
+         var pLastBold_ix1 = -1; // phrase
+         var pLastBold_ix2 = -1;
+         var wLastBold_ix1 = -1; // word
+         var wLastBold_ix2 = -1;
+         //---------------------
+         //-------------------
+         let ele_voxLangDisplay = document.getElementById("id_voxLangDisplay");
+         let myVoice;
+         let voices;
+         let listVox = []; // selected voices only   
+         let voiceList2 = [];
+         let totNumMyLangVoices = 0;
+         let lastNumVoice = 0;
+         let lastWordNumVoice = 0;
+         let synth = window.speechSynthesis;
+         let last_objtxt_to_speak;
+         
+         //------
+         let printStringBilingual = "";
+         let x1_line = 0;
+         let ele_last_play;
+         //--------------------------
+         let voice_toUpdate_speech;
+         let speech_volume = 1;
+         let speech_rate = 1;
+         let speech_pitch = 1;
+         let utteranceList = [];
+         let textLines = [];
+         let last_rate=-1;
+         let lastRow = -1;
+         let lastCol = -1;
+         let lastBoldCell;
+         let last_blue_cell;
+         let startTime;
+         let txt_length;
+         let sw_pause = false;
+         let sw_cancel = false;
+         let time_limit = 15; // in seconds  //  it seems that  an utterance can't last more     
+         let ELAPSED_TIME_SPEECH_LIMIT = 1000 * (time_limit - 1);
+         
+         let tot_norm_time = 0;
+         let tot_txt_len = 0;
+         let tot_norm_mill_char = 0;
+         let tot_norm_str_leng_limit = 0;
+         let TXT_SPEECH_LENGTH_LIMIT = 80; // initial value is updated according to the actual duration runs
+         //----
+         let TTS_LOOP_begix = -1;
+         var TTS_LOOP_endix = -1;
+         var TTS_LOOP_swLoop = false;
+         let TTS_LOOP_elem;
+         //--------------------------
+         //-----------------------------
+         
+         let word_fromIxToIxLimit = [-1, -1];
+         let word_fromIxToIxButtonElement = [null, null];
+         
+         let string_tr_xx = "";
+         let word_tr_allclip = "";
+         
+         
+         //----------------------------------------------
+         
+         let clip_reset_BG_color = "white";
+         let clip_somerow_BG_color = "lightgrey";
+         
+         
+         let begix, endix;
+         let fromIxToIxLimit = [-1, -1];
+         let fromIxToIxButtonElement = [null, null];
+         
+         let save_last_oneOnlyRow = "";
+         let save_last_oneOnly_idtr = "";
+         save_last_oneOnlyRow = "";
+         save_last_oneOnly_idtr = "";
+         //-----------------
+         
+         f_modifyProto()
+         //------------------------------------
+         function f_modifyProto() {
+         	/*
+         	lang non è vuoto e la table  delle righe di testo non è vuota
+         		allora il file è già stato letto ed occorre ottenere le voci con la lingua scelta nei run precedenti 
+         		atrimenti bisogna ancora leggere il file  
+         	*/	
+         	if (document.getElementById("id_lang2").innerHTML != "")  return ;
+         	
+         	document.getElementById("idtr_§x1§").innerHTML = f_replace_prototype_symb( document.getElementById("idtr_§x1§").innerHTML)
+         	prototype_tr_tts = document.getElementById("idtr_§x1§").outerHTML + "\n"; 	
+         	
+         } // end of f_modifyProto
+         //-------------------------------
+         
+         //----------------------------------------------------------------------------------------
+         function f_checkFile(file1) {
+             let fileName = file1.name
+             let fileType = file1.type
+             let msg1;
+             //console.log("file1.type=", file1.type)
+             //console.log("file1.name=", file1.name)
+             if (fileType != "text/plain") {
+                 if (fileType == "") fileType = "unknown"
+                 msg1 = "il file scelto '" + fileName + "' non può essere elaborato, perchè non è un file di testo, ma è di tipo '" + fileType + "' ";
+                 document.getElementById("id_msg1").innerHTML = msg1
+                 return false
+             }
+             let langs = (fileName + " _ _ ").split("_");   // formato "lbl_en_altro",   "lbl_de_altro"  
+			 if (langs[0] == "lbl") {
+				languageToStudy2 = langs[1]
+			 } else {
+				msg1 = "il file '" + fileName + "' non ha il nome nel formato previsto, " +
+                     "<br>" + "il nome deve iniziare con 'lbl' seguito dall'identificativo (di 2 caratteri) della lingua da studiare tra due '_',  es. 'lbl_de_123_titolo' "
+                 document.getElementById("id_msg1").innerHTML = msg1
+                 return false
+			 }
+             
+         	//myLocalLanguage  = langs[1]
+         	
+         	document.getElementById("id_lang2").innerHTML      = languageToStudy2 ;
+         	document.getElementById("id_localLang2").innerHTML = myLocalLanguage;
+         	
+            // myLocalLanguage = langs[1]
+             /**
+			 if ((languageToStudy2.length != 2) || (myLocalLanguage.length != 2)) {
+                 msg1 = "il file '" + fileName + "' non ha il nome nel formato previsto." +
+                     "<br>" + " deve iniziare con gli identificativi (di 2 caratteri) dalle lingue origine e traduzione separati dal carattere _ es. 'de_it_123_titolo' "
+                 document.getElementById("id_msg1").innerHTML = msg1
+                 return false
+             }
+			 **/			  
+             let i1 = fileName.lastIndexOf(".");
+             let ext1 = ""
+             if (i1 > 0) ext1 = fileName.substring(i1)
+             if (".txt .csv  .srt".indexOf(ext1) < 0) {
+                 msg1 = "il file '" + fileName + "' non ha estensione .txt e nemmeno .csv o .srt"
+                 document.getElementById("id_msg1").innerHTML = msg1
+                 return false
+             }
+             return true
+         
+         } // end of f_checkFile
+         
+         //----------------------------------------------------------------------------------------
+         
+         function f_onclick_readFile(input) {
+             let text1 = ""
+             let file1 = input.files[0]
+             if (f_checkFile(file1) == false) return
+         	inpFileName = file1.name; 
+             let swError = false
+             let msg1 = ""
+             try {
+                 var reader = new FileReader();
+                 reader.readAsText(file1);
+                 reader.onload = function() {
+                     text1 = reader.result;
+                     f_load_all_voices(); // at end calls f_toBeRunAfterGotVoices()			
+                     f_showFile(text1)
+					 document.getElementById("id_div20").style.display = "block";	
+					 document.getElementById("id_div30").style.display = "block";
+					 document.getElementById("idUpper2").style.display = "block";
+					 upperShowHide( document.getElementById("idHSupper") )
+					 getLastRow()
+         			//f_writePlayFile()
+                 };
+                 reader.onerror = function() {
+                     text1 = reader.error;
+                     swError = true
+                 };
+             } catch (e1) {
+                 msg1 = "errore nella  lettura del file '" + file1.name + "'";
+                 msg1 += "<br>" + e1;
+                 swError = true;
+             }
+             if (swError == false) {
+                 msg1 = file1.name
+             }
+             document.getElementById("id_msg1").innerHTML = msg1
+         	
+         } // end of f_onclick_readFile	
+         
+         
+         //-----------------------
+         function f_showFile(text1) {
+             let righe = text1.split("\n")
+         
+             let outLines = []
+             let swOrig = false
+             for (let x1 = 0; x1 < righe.length; x1++) {
+                 let riga = righe[x1].trim()
+                 if (riga == "") {
+                     swOrig = true;
+                     continue
+                 }
+                 if (swOrig || x1 == 0) {
+                     outLines.push([riga, ""])
+                     swOrig = false
+                     continue
+                 }
+                 outLines[(outLines.length - 1)][1] = riga
+             } // end for x1 	
+             //console.log("scritte ", outLines.length, " righe")
+                 //-----------------------
+            
+         
+             
+             let outTab = "\n" ;	
+         	let x22 = 0;
+             for (let x2 = 0; x2 < outLines.length; x2++) {
+         		x22 = x2+1
+                 outTab += prototype_tr_tts.
+         			replaceAll("§x1§", x22).
+         			replaceAll("§orig§", outLines[x2][0]).
+         			replaceAll("§traduz§", outLines[x2][1])
+             } // end for x2
+         	let eleTbody =document.getElementById("id_tbody1")
+             eleTbody.innerHTML = outTab;
+         	for (let x2 =0; x2 < eleTbody.children.length; x2++) {
+         		let oneTr = eleTbody.children[x2]; 		
+         		x22 = x2 + 1; 
+         		//console.log(oneTr.tagName, "  id='" + oneTr.id + "'  x2=", x2,  " x22=", x22)
+         		provaSpezza(x22)		
+         	}  
+         	//------------------------------------------	
+             document.getElementById("id_div30").style.display = "block";
+         	
+             //----------------------
+         
+         
+         } // end of f_showFile
+         //-------------------------
+         
+         function f_replace_prototype_symb(trRow) {
+             trRow = trRow. 
+             replaceAll('${speakinghead_symb}', speakinghead_symb).
+             replaceAll('${magnifyingGlass_symb}', magnifyingGlass_symb).
+             replaceAll('${left_arrow_symb}', left_arrow_symb).
+             replaceAll('${right_arrow_symb}', right_arrow_symb).
+             replaceAll('${openbook_symb}', openbook_symb).
+             replaceAll('${closedbook_symb}', closedbook_symb).
+             replaceAll('${word_pause_symb}', word_pause_symb).
+             replaceAll('${show_translation_symb}', show_translation_symb).
+             replaceAll('${hide_translation_symb}', hide_translation_symb)
+         	
+             return trRow
+         }
+         
+         
+         
+         //-----------------------------------------------------
+         function onclick_showHide_row(this1, idTran) {
+             // questa funzione è per mostrare o nascondere la riga originale o la riga tradotta 
+             // cambia da traduzione invisibile (t?) a visibile (T) e viceversa  
+             // T  indica che la traduzione è visibile, t? indica che la traduzione è nascosta 
+         
+             if (this1.children[0].style.display == "none") { // se la traduzione è nascosta ( T non si vede )
+                 //console.log("traduzione è nascosta,  mostrala ",  " idTran=" + idTran + "<=="  )
+                 document.getElementById(idTran).style.visibility = "visible"; //   allora mostra la traduzione, 
+                 this1.children[0].style.display = "block"; //     mostra l'icona T   		
+                 this1.children[1].style.display = "none"; //     e nascondi l'icona t?  
+                 console.log(" traduz=", document.getElementById(idTran).outerHTML)
+             } else {
+                 //console.log("traduzione è visible,  nascondila")
+                 document.getElementById(idTran).style.visibility = "hidden"; //  nascondi la traduzione     
+                 this1.children[0].style.display = "none"; //     nascondi l'icona T
+                 this1.children[1].style.display = "block"; //     e mostra l'icona t? 	
+             }
+         } // end of onclick_showHide_row	
+         //-------------------------------------------------------------------------	
+         //-------------------------------------
+         
+         function tts_3_show_speakingVoiceFromVoiceLangName(voice_lang, voice_name, voice_ix, wh) {
+         
+             //var msg1 = document.getElementById("m120").innerHTML; //  spoken in
+             var lang0 = get_languageName2(voice_lang).split("-");
+         
+             var msg = "<b>" + lang0[0] + "</b> <small>" +
+                 //document.getElementById("m120").innerHTML + //  spoken in
+                 "</small> <b>" + lang0[1] + "</b>";
+         
+             ele_voxLangDisplay.innerHTML = msg + ": <small>" + voice_name  + "</small>";
+         
+             console.log("%cshow_speakingVoiceFromVoiceLangName " + " in " + wh + " voice_lang=" + voice_lang + " voice_name=" + voice_name, "color:blue;font-weight:bold;")
+         } // 
+         
+         
+         //------------------------------------
+         function tts_3_set_speech_Parms(objtxt_to_speak) {
+         
+             //console.log("tts_3_set_speech_Parms() lastNumVoice=" + lastNumVoice + " lang=" + listVox[lastNumVoice][0]);
+             var myVoice = listVox[lastNumVoice][1];
+             var voice_lang2 = myVoice.lang.substr(0, 2);
+         
+             //voice_lang2 = "mioerrore"; // forzo errore per testare
+             /**
+             if (voice_lang2 != selected_voiceLang2) {		
+             	console.log("error: voice to set (" + myVoice.name + " is not of the selected language (" +  voice_lang2 + " vs " + selected_voiceLang2); 
+             	console.log("lastNumVoice=" + lastNumVoice  + " listVox.length=" + listVox.length); 
+             	//console.log(signalerror); 
+             	tts_2_fill_the_voices(); 
+             	if (lastNumVoice >= listVox.length) lastNumVoice = 0;  
+             	myVoice = listVox[lastNumVoice][1];
+             }
+             **/
+         
+             last_objtxt_to_speak = objtxt_to_speak;
+         
+             objtxt_to_speak.voice = myVoice;
+         
+             // Always set the utterance language to the utterance voice's language // to prevent unspecified behavior.   utterance.lang = utterance.voice.lang
+             objtxt_to_speak.lang = objtxt_to_speak.voice.lang;
+         
+         
+             tts_3_show_speakingVoiceFromVoiceLangName(objtxt_to_speak);
+         
+             objtxt_to_speak.rate = speech_rate;
+             objtxt_to_speak.pitch = speech_pitch;
+         
+         
+         } // tts_3_set_speech_Parms()
+         
+         //-------------------------------------------------
+         function tts_1_toBeRunAfterGotVoices() {
+             console.log("tts_1_toBeRunAfterGotVoices()");
+             if (voices.length < 1) return;
+         
+             let sw_2Level = true; //  ( document.getElementById("id_is_download").innerHTML == "yes") ;	
+         
+         
+             voices.sort(
+                 function(a, b) {
+                     return ((a.lang + a.name) > (b.lang + b.name)) ? 1 : -1;
+                 }
+             );
+             var pLang2 = "??";
+             var pLang4;
+             var numL2 = 0;
+             var numL4 = 0;
+             var langName;
+             var ixSele = -1;
+             var sele_str = "";
+             var selected_yes = "selected";
+             var swSele = false;
+         
+             listVox = [];
+             //------------------------------------------------	  
+             for (let z1 = 0; z1 < voices.length; z1++) {
+                 let vox = voices[z1]
+                 if (vox.lang.substr(0, 2) != languageToStudy2) continue;
+         
+                 langName = get_languageName2(vox.lang).split("-")[0].trim();
+                 listVox.push([vox.lang, vox]);
+             }
+         	totNumMyLangVoices = listVox.length
+         
+         } // end of toBeRunAfterGotVoices()
+         
+         
+         //------------------------------------
+         function get_languageName2(en_GB) {
+         
+             var la = (en_GB + "--").replaceAll("_", "-").split("-");
+             var id_lang = la[0];
+             var id_country = la[1];
+             if (myLocalLanguage == "") {
+                 myLocalLanguage = document.getElementById("id_localLang2").innerHTML;
+             }
+         
+         
+             id_lang = ("" + id_lang).trim().toLowerCase();
+             id_country = ("" + id_country).trim().toUpperCase();
+             const countryExt = new Intl.DisplayNames([myLocalLanguage], {
+                 type: 'region'
+             });
+             const languageExt = new Intl.DisplayNames([myLocalLanguage], {
+                 type: 'language'
+             });
+             var r_lang = "";
+             var r_country = "";
+         
+             if (id_lang != "") r_lang = languageExt.of(id_lang);
+             if (id_country != "") r_country = countryExt.of(id_country);
+         
+             r_lang = r_lang.substr(0, 1).toUpperCase() + r_lang.substr(1);
+             r_country = r_country.substr(0, 1).toUpperCase() + r_country.substr(1);
+         
+             return r_lang + " - " + r_country;
+         
+         } // end of get_languageName2
+         //-----------------------------------------	
+         
+         function tts_3_boldCell(tr1, this1, ixVoice, wh) {
+             if (lastBoldCell) {
+                 lastBoldCell.style.backgroundColor = null;
+             }
+             var selected_numVoices2 = 1;
+         
+             var td1 = this1.parentElement;
+             var ixTab_TD = td1.cellIndex;
+         
+             var ixDiff = ixTab_TD - ixVoice;
+             var ixTD_0 = 0;
+         
+             var num_tr_cells = tr1.cells.length;
+         
+             for (var n = 0; n < selected_numVoices2; n++) {
+                 ixTD_0 = n + ixDiff;
+                 if (n == ixVoice) {
+                     lastBoldCell = tr1.cells[ixTD_0];
+                     lastBoldCell.style.backgroundColor = "green";
+                 } else {
+                     tr1.cells[ixTD_0].style.backgroundColor = null;
+                 }
+             }
+         
+         } // end of tts_3_boldCell()
+         
+         //--------
+         
+         //---------------------------
+         
+         function tts_3_breakTextToPause(txt3, pre_idtr1) {
+             var g, ww2, txt4 = "";
+             if (pre_idtr1 == "") {
+                 var ww1 = (txt3 + " ").replaceAll("–", " ").replaceAll("-", " ").
+                 replaceAll(", ", " ").replaceAll(" .", " ").replaceAll(". ", " ").replaceAll("...", " ").
+                 replaceAll("? ", " ").replaceAll("! ", " ").split(" ");
+         
+                 for (g = 0; g < ww1.length; g++) {
+                     ww2 = ww1[g].trim();
+                     if (ww2 != "") txt4 += ww2 + ". ";
+                 }
+             } else {
+                 var txt5 = (txt3 + " ").replaceAll("–", " ").replaceAll("-", " ").
+                 replaceAll(", ", " ").replaceAll(" .", " ").replaceAll(". ", " ").replaceAll("...", " ").
+                 replaceAll("? ", " ").replaceAll("! ", " ").trim();
+         
+                 for (g = 0; g < txt5.length; g++) {
+                     ww2 = txt5.charAt(g);
+                     if (ww2 != "") txt4 += ww2 + ", ";
+                 }
+                 //console.log("tts_3_breakTextToPause() " +  txt3 + "\n" + txt4.replaceAll(",", "\n\t"));
+             }
+             return txt4;
+         
+         } // end of breakToPause()	
+         
+         //--------------------------------
+         
+         function tts_3_removeBold_and_Font(txt0) {
+             // I'm sorry<font color="#E5E5E5"> Val I'm frightfully tired but</font>
+             //I&apos;m sorry&lt;font color=&quot;#E5E5E5&quot;&gt; Val I&apos;m frightfully tired but&lt;/font&gt;<br>
+             let txt1 = txt0.trim().toLowerCase();
+             txt1 = txt1.replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&apos;", "'").replaceAll("&quot;", '"');
+         
+             let j1 = -1;
+             for (let x1 = 0; x1 < txt1.length; x1++) {
+                 j1 = txt1.indexOf("<font ");
+                 if (j1 < 0) {
+                     break;
+                 }
+                 if (txt1.indexOf("</font>", j1) < 0) {
+                     return txt1;
+                 }
+                 let j2 = txt1.indexOf(">", j1);
+                 if (j2 < 0) {
+                     break;
+                 }
+                 txt1 = txt1.substring(0, j1) + txt1.substring(j2 + 1);
+                 txt1 = txt1.replace("</font>", "");
+             }
+             txt1 = txt1.replace("< ", "<").replace(" >", ">").
+             replaceAll("<em>", "").replaceAll("</em>", "").
+             replaceAll("<strong>", "").replaceAll("</strong>", "").
+             replaceAll("<b>", "").replaceAll("</b>", "").replaceAll("<i>", "").replaceAll("</i>", "").
+             replaceAll("<B>", "").replaceAll("</B>", "").replaceAll("<I>", "").replaceAll("</I>", "");
+             return txt1;
+         
+         } // end of removeBold_and_Font()
+         
+         //--------------------
+         
+         
+         function TOGLIonclick_tts_changeRate(this1) {
+             var rate = parseFloat(this1.value);
+             if (rate < 0.30) rate = 0.30;
+             last_rate = rate;
+             this1.value = rate;
+             speech_rate = rate;
+             if (last_objtxt_to_speak) last_objtxt_to_speak.rate = rate;
+             var thisTD = this1.parentElement;
+             var preTD = thisTD.parentElement.children[1];
+             preTD.innerHTML = rate;
+         }
+         
+		 //---------------------------------------
+  function onclick_tts_changePitch(this1, step1, min1, max1, numDig1) {	
+	 let eleValue = this1.parentElement.children[1];
+	 
+	 let newValue = stepUpDown(eleValue,step1,min1,max1,numDig1) 
+	 
+	 let pitch = parseFloat(newValue) 
+	
+	 eleValue.innerHTML = newValue;
+	 
+	 if (pitch < 0.1) pitch = 0.1;
+	 this1.value = pitch;
+	 speech_pitch = pitch;
+	 if (last_objtxt_to_speak) last_objtxt_to_speak.rate = pitch;
+	 
+} // end of onclick_tts_changePitch
+         //----------------------------------
+         function onclick_tts_speech_pause() {
+             //console.log("pause"); 
+             if (synth.speaking) {
+                 sw_pause = true;
+                 synth.pause();
+             }
+         }
+         //---------------------
+         function onclick_tts_speech_resume() {
+             //console.log("resume"); 
+             sw_pause = false;
+             window.speechSynthesis.resume();
+             synth.resume();
+         }
+         
+         //----------------------
+         
+         function onclick_tts_speech_cancel() {
+             //console.log("*** cancel ***"); 
+             sw_cancel = true;
+             if (synth.speaking) {
+                 synth.cancel();
+             }
+         }
+         //------------------------------------
+         
+         function onclick_tts_change_synth_rate(this1) {
+             speech_rate = parseFloat(this1.value);
+             if (speech_rate < 0.25) {
+                 speech_rate = 0.25;
+             }
+             document.getElementById("id_syncRate1").value = speech_rate;
+             document.getElementById("id_setSpeedy").value = speech_rate;
+         }
+         
+         //----------------------------------------------------------
+         function tts_3_break_priority(txt1, maxLen, sw_let_old_newline) {
+         
+             if (sw_let_old_newline == false) {
+                 txt1 = txt1.replaceAll("\n", " "); // eliminate existing newline  
+             }
+         
+             // break text into lines always for: end of sentence (.), question mark(?), exclamation(!), semicolon(;)  
+         
+             var row1 = txt1.replaceAll("<br>", "\n").
+             replaceAll(". ", ".\n").
+             replaceAll("? ", "?\n").
+             replaceAll("! ", "!\n").
+             replaceAll("; ", ";\n");
+         
+             return row1.split("\n");
+         } // end of tts_3_break_priority
+         
+         //------------------------------------------
+         
+         
+         function splitRiga( inpRiga0 ) {
+         	var inpRiga = (inpRiga0+ "  ").replaceAll(". ", ". §").replaceAll("! ", "! §").replaceAll("? ", "? §").replaceAll("; ", "; §").
+         		replaceAll(": ", ": §").replaceAll(", ", ", §").replaceAll(" ", " §");
+         
+             var listaParole = [];
+             var list2 = inpRiga.split("§");
+         	var aster80 = "************************************************************************************"
+         
+             for (var f = 0; f < list2.length; f++) {
+         		let parola = list2[f].trim()
+                 if (parola != "")  listaParole.push( parola ) 
+             }
+         	return listaParole
+         	
+         } // end of splitRiga 
+         //-----------------------------------------
+         function provaSpezza(numId) {
+         	//idtr_1
+         	let id_inp = "idc_" + numId 
+         	let id_aster = "idca_" + numId
+         	//console.log( "provaSpezza: numId=", numId, " idTr=" , document.getElementById("idtr_"+numId) )
+         	let inpTxt  = document.getElementById(id_inp).innerHTML
+         	
+         	// devo assicurarmi che non esistano i caratteri "::" (2 due punti),  "*" (asterischi), "[", "]",  e "§" 
+         	inpTxt = inpTxt.replaceAll("::", " ").replaceAll("[", " ").replaceAll("]", " ").replaceAll("*"," ").replaceAll("§"," "); 
+         	
+         		
+         	//--------
+         	var listaParole = splitRiga( inpTxt );    
+         	
+         	//console.log( "lista Parole=", listaParole.join("\t"))
+         	
+         	var listaAster=""
+         	
+             for (var f = 0; f < listaParole.length; f++) {        
+         			let parola = listaParole[f]
+         			let len1   = parola.length
+                     listaAster += "***"+ (f+1) + "*** ";        
+             }
+         	//console.log("listaAster = ", listaAster)
+         	document.getElementById(id_aster).innerHTML = listaAster
+         	
+         } 
+         //---------------------------------------------------------
+         
+         
+         //---------------------------------------------
+         function replaceAster(toPlayTxt,numId) {
+         	// formato:  ***1*** ***2***
+         	let origText = document.getElementById("idc_" + numId).innerHTML 
+         	var listaParole = splitRiga( origText );  
+         	var listaAster = toPlayTxt.split(" "); 
+         	var outLista = ""
+         	var last_u = listaAster.length-1
+         	for(let u=0; u < listaAster.length;u++) {
+         		let oneAster = listaAster[u]     // formato ***123*** dove il numero 123 è l'indice della parola originale
+         		let numIx    = parseInt( oneAster.replaceAll("*","") )
+         		if (isNaN(numIx) || numIx < 1 ) {
+         			// la parola non è stata completamente selezionata ( manca l'indice oppure è +< 1 ) 
+         			continue // ignora questa parola 
+         		} 		
+         		outLista += listaParole[ (numIx-1) ] + " "		
+         	}	
+         	return outLista
+         	
+         } // end of replaceAster
+         
+         
+         
+         //----------------------------------
+         function TOGLIf_writePlayFile() {
+         	
+         	let title0 = document.title;
+         	let title1 = "play_" + inpFileName.replace(".txt","")
+         	//console.log("title1=", title1)
+         	document.title = title1; 
+         	//console.log("title new=", document.title)
+         	let head1= document.getElementsByTagName("head")[0].outerHTML;	
+         	document.title = title0;
+         	//console.log(head1)
+         	let body1 = '<body style="overflow:auto;"> \n' + document.getElementsByTagName("h1")[0].outerHTML + "\n";	
+         	body1 += '   ' + document.getElementById("id_msg1").outerHTML + "\n";	
+         	body1 += '   ' + document.getElementById("id_playLang2").outerHTML + "\n";	
+         	//body1 += '   ' + document.getElementById("id_div20").outerHTML + "\n";	
+         	body1 += '   ' + document.getElementById("id_div30").outerHTML + "\n";	
+         	
+         	
+         	let newHTML = '<!DOCTYPE html> \n' +
+         		'<html> \n'    +
+         		head1  + '\n'  +
+         		body1  + '\n'  +
+         	    '</body> \n'   +
+         		'</html> \n' ; 
+         	
+         	//console.log("newHTML = \n", newHTML )
+         	f_download( title1 + '.html', newHTML) 
+         
+         	
+         
+         } // end of writePlayFile
+         
+         
+         //------------------------------------------	
+         function f_download(filename, text) {
+             var element = document.createElement('a');
+             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+             element.setAttribute('download', filename);
+         	
+         	document.getElementById("id_msg2").innerHTML = "nella cartella dei download è stato scritto il file <br>" + filename; 
+         
+             element.style.display = 'none';
+             document.body.appendChild(element);
+         
+             element.click();
+         
+             document.body.removeChild(element);
+         } // end of download
+         
+         //---------------------------
+         
+         //   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  FINE_SCRIPT1 e INIZIO SCRIPT2 XXXXXXXXXXXXXXXXXXX
+         
+         //-----------------------------------
+         
+         let numLoadVoiceIteration = 0;
+         
+         //=============================================
+         
+         f_main2(); 
+         
+         //------------------------------------
+         function f_main2() {
+         	/*
+         	lang non è vuoto e la table  delle righe di testo non è vuota
+         		allora il file è già stato letto ed occorre ottenere le voci con la lingua scelta nei run precedenti 
+         		atrimenti bisogna ancora leggere il file  
+         	*/	
+         	if (document.getElementById("id_lang2").innerHTML != "")  {
+         		f_load_all_voices(); 
+         		//getPixelWidthHeight()
+         	} 	
+         	
+         	
+         } // end of f_main2
+         //------------------------------------------
+         
+         function f_load_all_voices() {
+         
+             console.log("xxxxxxxxxxxxxxxxxxxx  f_load_all_voices:  interation " + (1 + numLoadVoiceIteration));
+             //---------------------------------
+             function f_voices_load_ok(voices) {
+                 let numLocal = 0;
+                 let numRemote = 0;
+                 for (let g = 0; g < voices.length; g++) {
+                     //console.log(voices[g].name); 
+                     if (voices[g].localService) {
+                         numLocal++;
+                     } else {
+                         numRemote++;
+                     }
+                 }
+                 //----------
+                 console.log(voices.length + " voices loaded: " + numLocal + " local, " + numRemote + " remote");
+         
+                 if ((numLocal < 1) || (numRemote < 1)) {
+                     if (numLoadVoiceIteration < 2) {
+                         numLoadVoiceIteration++;
+                         setTimeout(f_load_all_voices, 500);
+                     } else {
+                         // too many unsuccessful attempts, get what there is; 
+                         f_use_the_voices();
+                     }
+                 } else {
+                     //console.log("== ok == " + numLoadVoiceIteration); 
+                     f_use_the_voices();
+                 }
+             } // end of load_ok
+             //---------------------------------
+             function f_voices_load_error(error) {
+                 console.log("%cerror in loading voices \n" + error, "color:red;");
+             }
+             //---------------------------------
+             const allVoicesObtained = new Promise(
+                 function(f_resolve, reject) {
+                     voices = window.speechSynthesis.getVoices();
+                     if (voices.length !== 0) {
+                         f_resolve(voices);
+                     } else {
+                         window.speechSynthesis.addEventListener("voiceschanged", function() {
+                             voices = window.speechSynthesis.getVoices();
+                             f_resolve(voices);
+                         });
+                     }
+                 }
+             );
+             allVoicesObtained.then(
+                 function(voices) {
+                     f_voices_load_ok(voices);
+                 },
+                 function(error) {
+                     f_voices_load_error(error);
+                 }
+             );
+             //----------------------------------
+             function f_use_the_voices() {
+                 console.log("cbc_voices_getVoices.js --> use_the_voices")
+                  
+                 f_toBeRunAfterGotVoices();
+         
+             }
+             //-----------------------------
+         } // end of f_load_all_voices()
+         
+         //------------------------------------
+         
+         
+         function f_toBeRunAfterGotVoices() {
+             console.log("f_toBeRunAfterGotVoices()");
+             if (voices.length < 1) return;
+         
+             let sw_2Level = true; //  ( document.getElementById("id_is_download").innerHTML == "yes") ;	
+         
+         
+             voices.sort(
+                 function(a, b) {
+                     return ((a.lang + a.name) > (b.lang + b.name)) ? 1 : -1;
+                 }
+             );
+             let pLang2 = "??";
+             let pLang4;
+             let numL2 = 0;
+             let numL4 = 0;
+             let langName;
+             let ixSele = -1;
+             let sele_str = "";
+             let selected_yes = "selected";
+             let swSele = false;
+         
+             listVox = [];
+         	let vox ;
+         	
+         	languageToStudy2 = document.getElementById("id_lang2").innerHTML;
+         	
+             //------------------------------------------------	  
+             for (let z1 = 0; z1 < voices.length; z1++) {
+                 vox = voices[z1]
+                 if (vox.lang.substr(0, 2) != languageToStudy2) continue;
+         
+                 langName = f_getLanguageName(vox.lang).split("-")[0].trim();
+                 listVox.push([vox.lang, vox]);
+             }
+         	totNumMyLangVoices=listVox.length;
+         	console.log("1 listVox.length=", listVox.length)
+         	
+         	if (listVox.length < 1 ) return 
+         	vox = listVox[0][1]    
+             f_show_speakingVoiceFromVoiceLangName(vox.lang, vox.name, 0, 2);
+         	
+         } // end of toBeRunAfterGotVoices()
+         
+         //-------------------------------------------------
+         
+         function f_getLanguageName(en_GB) {
+         
+             let la = (en_GB + "--").replaceAll("_", "-").split("-");
+             let id_lang = la[0];
+             let id_country = la[1];
+             if (myLocalLanguage == "") {
+                 myLocalLanguage = document.getElementById("id_localLang2").innerHTML;
+             }
+         
+         
+             id_lang = ("" + id_lang).trim().toLowerCase();
+             id_country = ("" + id_country).trim().toUpperCase();
+             const countryExt = new Intl.DisplayNames([myLocalLanguage], {
+                 type: 'region'
+             });
+             const languageExt = new Intl.DisplayNames([myLocalLanguage], {
+                 type: 'language'
+             });
+             let r_lang = "";
+             let r_country = "";
+         
+             if (id_lang != "") r_lang = languageExt.of(id_lang);
+             if (id_country != "") r_country = countryExt.of(id_country);
+         
+             r_lang = r_lang.substr(0, 1).toUpperCase() + r_lang.substr(1);
+             r_country = r_country.substr(0, 1).toUpperCase() + r_country.substr(1);
+         
+             return r_lang + " - " + r_country;
+         
+         } // end of f_getLanguageName
+         
+         //-----------------------------------------	
+         
+         function f_show_speakingVoiceFromVoiceLangName(voice_lang, voice_name, voice_ix, wh) {
+         
+             let lang0 = f_getLanguageName(voice_lang).split("-");
+         
+             let msg = "<b>" + lang0[0] + "   " + lang0[1] + "</b>";
+         
+             ele_voxLangDisplay.innerHTML = msg + ": <small>" + voice_name + "</small>";
+         
+             //console.log("%cshow_speakingVoiceFromVoiceLangName " + " in " + wh + " voice_lang=" + voice_lang + " voice_name=" + voice_name, "color:blue;font-weight:bold;")
+         } // 
+         
+         //-----------------------------------------------------
+         function f_onclick_showHide_row(this1, idTran) {
+             // questa funzione è per mostrare o nascondere la riga originale o la riga tradotta 
+             // cambia da traduzione invisibile (t?) a visibile (T) e viceversa  
+             // T  indica che la traduzione è visibile, t? indica che la traduzione è nascosta 
+         
+             if (this1.children[0].style.display == "none") { // se la traduzione è nascosta ( T non si vede )
+                 //console.log("traduzione è nascosta,  mostrala ",  " idTran=" + idTran + "<=="  )
+                 document.getElementById(idTran).style.visibility = "visible"; //   allora mostra la traduzione, 
+                 this1.children[0].style.display = "block"; //     mostra l'icona T   		
+                 this1.children[1].style.display = "none"; //     e nascondi l'icona t?  
+                 console.log(" traduz=", document.getElementById(idTran).outerHTML)
+             } else {
+                 //console.log("traduzione è visible,  nascondila")
+                 document.getElementById(idTran).style.visibility = "hidden"; //  nascondi la traduzione     
+                 this1.children[0].style.display = "none"; //     nascondi l'icona T
+                 this1.children[1].style.display = "block"; //     e mostra l'icona t? 	
+             }
+         } // end of f_onclick_showHide_row	
+         //-------------------------------------------------------------------------	
+         
+         function f_show_speakingVoice(objtxt_to_speak) {
+             f_show_speakingVoiceFromVoiceLangName(objtxt_to_speak.voice.lang, objtxt_to_speak.voice.name, -1, 1);
+         } // 
+         
+         //------------------------------------
+         function f_set_speech_Parms(objtxt_to_speak) {
+         
+             //console.log("f_set_speech_Parms() lastNumVoice=" + lastNumVoice + " lang=" + listVox[lastNumVoice][0]);
+             let myVoice = listVox[lastNumVoice][1];
+             let voice_lang2 = myVoice.lang.substr(0, 2);
+         
+         
+             last_objtxt_to_speak = objtxt_to_speak;
+         
+             objtxt_to_speak.voice = myVoice;
+         
+             // Always set the utterance language to the utterance voice's language // to prevent unspecified behavior.   utterance.lang = utterance.voice.lang
+             objtxt_to_speak.lang = objtxt_to_speak.voice.lang;
+         
+         
+             f_show_speakingVoice(objtxt_to_speak);
+         
+             objtxt_to_speak.rate  = speech_rate;
+             objtxt_to_speak.pitch = speech_pitch;
+         
+         
+         } // f_set_speech_Parms()
+         
+         
+         
+         
+         //------------------------------------------
+         
+         function f_play_or_cancel(this1) {
+         	
+         	//console.log("%cplay_or_cancel", "color:blue;")
+         	
+             if (synth.speaking) {
+                 if (ele_last_play) ele_last_play.style.backgroundColor = null;
+         
+                 f_onclick_speech_cancel();
+                 f_end_speech();
+                 if (this1 == ele_last_play) { // click on the same line which is running ==> it means ==> I just want to stop it   
+                     return -1;
+                 }
+                 // click not on the sameline running ==> I wanted to stop the last line e start a new one 
+         
+             }
+         
+             this1.style.backgroundColor = "red";
+             ele_last_play = this1;
+             return 0;
+         } // end of f_play_or_cancel
+         
+         //--------------------------------------------
+         
+         function f_speech_calculation() {
+         	//console.log("f_speech_calculation")
+             
+         
+             let endTime = new Date();
+             let timeDiff = endTime - startTime; //actual elapsed time in ms 
+         
+             if (txt_length < 1) {
+                 return;
+             }
+         
+         
+             let normal_time = timeDiff * speech_rate;
+         
+             //-----------
+             tot_norm_time += normal_time;
+             tot_txt_len += txt_length;
+             tot_norm_mill_char = tot_norm_time / tot_txt_len;
+             tot_norm_str_leng_limit = ELAPSED_TIME_SPEECH_LIMIT / tot_norm_mill_char;
+             TXT_SPEECH_LENGTH_LIMIT = parseInt(tot_norm_str_leng_limit * speech_rate);
+         
+             f_loopManager();
+         
+         } // end of f_speech_calculation() 
+         //-----------------------------------------
+         
+         function f_end_speech() {
+         	//console.log("f_end_speech")
+         	
+             if (ele_last_play) {
+                 if (TTS_LOOP_swLoop == false) {
+                     ele_last_play.style.backgroundColor = null;
+                 }
+             }
+             f_speech_calculation();
+         } // end of f_end_speech()
+         
+         //-------------------------------------------
+         
+         function f_loopManager() {
+         	//console.log("f_loopManager   totNumMyLangVoices=" ,totNumMyLangVoices, " lastNumVoice=",  lastNumVoice)
+             if (sw_cancel) {
+                 TTS_LOOP_swLoop = false;
+                 sw_cancel = false;
+             }
+             if (TTS_LOOP_swLoop == false) return;
+         
+             lastNumVoice++;
+             if (lastNumVoice >= totNumMyLangVoices) lastNumVoice = 0; // to change voice on each cycle
+         
+             let id_pref = "idc_";
+         
+             // wait 1 second and then start again  
+             setTimeout(function() {
+         		timeOutError()
+         			/**
+                     if (TTS_LOOP_begix == TTS_LOOP_endix) {
+                         onclick_tts_text_to_speech_ix(id_pref, TTS_LOOP_begix, TTS_LOOP_swLoop, TTS_LOOP_elem);
+                     } else {
+                         onclick_tts_text_to_speech_from_to(id_pref, TTS_LOOP_begix, TTS_LOOP_endix, TTS_LOOP_swLoop, "1 loop_manager");
+                     }
+         			***/
+                 },
+                 1000);
+         } // end of f_loopManager()
+         //--------------------------------------------
+         function timeOutError() {	
+         } 
+         
+         //--------------------------
+         function f_boldCell(tr1, this1, ixVoice, wh) {
+             if (lastBoldCell) {
+                 lastBoldCell.style.backgroundColor = null;
+             }
+             let selected_numVoices2 = 1;
+         
+             let td1 = this1.parentElement;
+             let ixTab_TD = td1.cellIndex;
+         
+             let ixDiff = ixTab_TD - ixVoice;
+             let ixTD_0 = 0;
+         
+             let num_tr_cells = tr1.cells.length;
+         
+             for (let n = 0; n < selected_numVoices2; n++) {
+                 ixTD_0 = n + ixDiff;
+                 if (n == ixVoice) {
+                     lastBoldCell = tr1.cells[ixTD_0];
+                     lastBoldCell.style.backgroundColor = "green";
+                 } else {
+                     tr1.cells[ixTD_0].style.backgroundColor = null;
+                 }
+             }
+         
+         } // end of f_boldCell()
+         
+         //---------------------------
+         function f_removeBold_and_Font(txt0) {
+             // I'm sorry<font color="#E5E5E5"> Val I'm frightfully tired but</font>
+             //I&apos;m sorry&lt;font color=&quot;#E5E5E5&quot;&gt; Val I&apos;m frightfully tired but&lt;/font&gt;<br>
+             let txt1 = txt0.trim().toLowerCase();
+             txt1 = txt1.replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&apos;", "'").replaceAll("&quot;", '"');
+         
+             let j1 = -1;
+             for (let x1 = 0; x1 < txt1.length; x1++) {
+                 j1 = txt1.indexOf("<font ");
+                 if (j1 < 0) {
+                     break;
+                 }
+                 if (txt1.indexOf("</font>", j1) < 0) {
+                     return txt1;
+                 }
+                 let j2 = txt1.indexOf(">", j1);
+                 if (j2 < 0) {
+                     break;
+                 }
+                 txt1 = txt1.substring(0, j1) + txt1.substring(j2 + 1);
+                 txt1 = txt1.replace("</font>", "");
+             }
+             txt1 = txt1.replace("< ", "<").replace(" >", ">").
+             replaceAll("<em>", "").replaceAll("</em>", "").
+             replaceAll("<strong>", "").replaceAll("</strong>", "").
+             replaceAll("<b>", "").replaceAll("</b>", "").replaceAll("<i>", "").replaceAll("</i>", "").
+             replaceAll("<B>", "").replaceAll("</B>", "").replaceAll("<I>", "").replaceAll("</I>", "");
+             return txt1;
+         
+         } // end of removeBold_and_Font()
+         
+         
+         
+         
+         //-------------------------------------------------
+         
+         
+         function f_text_to_speech2(txt1, wh) {
+         
+             sw_pause = false;
+             startTime = new Date();
+             txt_length = txt1.length;
+         
+             utteranceList = [];
+             x1_line = 0;
+             txt1 = f_removeBold_and_Font(txt1);
+         
+             let newLine = f_break_text(txt1, TXT_SPEECH_LENGTH_LIMIT, false); // 3rd param true =  sw_hold_existing_endOfLine
+         
+             newLine = newLine.replaceAll("\n", "\n\n");
+         
+             textLines = newLine.split("\n");
+         
+             let objtxt_to_speak;
+             //let riga;
+             //------------
+             for (let v1 = 0; v1 < textLines.length; v1++) {
+                 objtxt_to_speak = new SpeechSynthesisUtterance(textLines[v1]);
+                 utteranceList.push(objtxt_to_speak);
+             }
+             objtxt_to_speak = utteranceList[0];
+         
+             //speech = objtxt_to_speak; // 1
+         
+             objtxt_to_speak.onend = f_speech_end_fun;
+         
+         
+         
+             f_speak_a_line(objtxt_to_speak, "1." + wh);
+         
+         
+         } // end of f_text_to_speech2() 	
+         //----------------------------------
+         
+         
+         
+         function f_onclick_changeRate(this1) {
+             let rate = parseFloat(this1.value);
+             if (rate < 0.30) rate = 0.30;
+             last_rate = rate;
+             this1.value = rate;
+             speech_rate = rate;
+             if (last_objtxt_to_speak) last_objtxt_to_speak.rate = rate;
+             let thisTD = this1.parentElement;
+             let preTD = thisTD.parentElement.children[1];
+             preTD.innerHTML = rate;
+         }
+         //---------------------------------------
+         function f_onclick_changePitch(this1) {
+             let pitch = this1.value;
+             if (pitch < 0.1) pitch = 0.1;
+             this1.value = pitch;
+             speech_pitch = pitch;
+             if (last_objtxt_to_speak) last_objtxt_to_speak.rate = pitch;
+             let thisTD = this1.parentElement;
+             let preTD = thisTD.parentElement.children[1];
+             preTD.innerHTML = pitch;
+         }
+         //----------------------------------
+         function f_onclick_speech_pause() {
+             //console.log("pause"); 
+             if (synth.speaking) {
+                 sw_pause = true;
+                 synth.pause();
+             }
+         }
+         //---------------------
+         function f_onclick_speech_resume() {
+             //console.log("resume"); 
+             sw_pause = false;
+             window.speechSynthesis.resume();
+             synth.resume();
+         }
+         
+         //----------------------
+         
+         function f_onclick_speech_cancel() {
+            console.log("%conclick_speech_cancel", "color:blue;")  
+             sw_cancel = true;
+             if (synth.speaking) {
+                 synth.cancel();
+             }
+         }
+         
+         
+         //----------------------------------------------------------
+         function f_break_priority(txt1, maxLen, sw_let_old_newline) {
+         
+             if (sw_let_old_newline == false) {
+                 txt1 = txt1.replaceAll("\n", " "); // eliminate existing newline  
+             }
+         
+             // break text into lines always for: end of sentence (.), question mark(?), exclamation(!), semicolon(;)  
+         
+             let row1 = txt1.replaceAll("<br>", "\n").
+             replaceAll(". ", ".\n").
+             replaceAll("? ", "?\n").
+             replaceAll("! ", "!\n").
+             replaceAll("; ", ";\n");
+         
+             return row1.split("\n");
+         } // end of tts_3_break_priority
+         
+         //-----------------------------------------
+         
+         function f_break_text(txt1, maxLen, sw_let_old_newline) {
+         
+             // break for: new line, end of sentence (.), exclamantion(!)  and question mark(?), and semicolon(";")     
+             // break for too long line ( last comma or last blank before reaching the maximum length   
+         
+             let rtxt2 = f_break_priority(txt1, maxLen, sw_let_old_newline);
+         
+             //console.log("break_text(txt1=" + txt1 + " \n\trtxt2=" + rtxt2);   
+         
+             //-------------------------------	
+             function f_tooLongLine(oneLine) {
+                 // break in strings with their length not > maxlen  ( firstly try to find colon(:), then comma(,) and lastily space(" ")  
+                 let txt3 = oneLine.trim();
+                 let newLine2 = "";
+                 let len1;
+                 let txt3a;
+                 let u, u1, u2;
+                 //-------------
+                 for (let h = 0; h < txt3.length; h++) {
+                     len1 = txt3.length;
+                     if (len1 < 1) {
+                         break;
+                     }
+                     if (len1 <= maxLen) {
+                         newLine2 += txt3 + "\n";
+                         break;
+                     }
+         
+                     txt3a = txt3.substring(0, maxLen);
+                     u1 = txt3a.lastIndexOf(": ");
+                     u2 = txt3a.lastIndexOf(", ");
+                     u = Math.max(u1, u2);
+                     if (u >= 0) {
+                         u++;
+                     } else {
+                         u = txt3a.lastIndexOf(" ");
+                     }
+                     if (u < 0) {
+                         u = txt3.indexOf(" "); // find next forward 
+                         if (u < 0) {
+                             u = txt3.length; // take all string 
+                         }
+                     }
+                     newLine2 += txt3.substring(0, u) + "\n";
+         
+                     txt3 = txt3.substring(u).trim();
+                 }
+                 return newLine2;
+         
+             } // end of tooLongLine();
+         
+             //-------------------------------------------
+         
+             let newLine = "";
+             for (let g = 0; g < rtxt2.length; g++) {
+                 newLine += f_tooLongLine(rtxt2[g]);
+             }
+         
+         
+             return newLine;
+         
+         } // end of break_text() 
+         
+         
+         
+         //----------------
+         
+         function f_speak_a_line(objtxt_to_speak, wh) {
+             if (sw_cancel) {
+                 TTS_LOOP_swLoop = false;
+                 sw_cancel = false;
+                 return;
+             }
+             //speech_rate  = last_rate;
+         
+             f_set_speech_Parms(objtxt_to_speak);
+         
+         
+             synth.speak(objtxt_to_speak);
+         
+         } // end of f_speak_a_line()
+         //-------------------------------------------
+         
+         
+         //---------------------
+         function f_speech_end_fun() {
+         	
+         	//console.log("%cf_speech_end_fun --> objtxt_to_speak.onend", "color:blue;")
+             
+         	x1_line++;
+         
+             if ((x1_line) >= textLines.length) {
+                 //console.log("f_speech_end_fun()1");
+                 f_end_speech(); // defined in the caller   **   Feb 11, 2023	
+                 return;
+             }
+             let objtxt_to_speak;
+             //rigout += textLines[x1_line] + "<br>";
+         
+         
+         
+             if ((x1_line + 1) >= textLines.length) {
+                 //console.log("f_speech_end_fun()2");
+                 f_end_speech(); // defined in the caller   **   Feb 11, 2023	
+                 return;
+             }
+         
+             objtxt_to_speak = utteranceList[x1_line + 1];
+             //speech = objtxt_to_speak; //2  
+         
+         
+             objtxt_to_speak.onend = f_speech_end_fun;
+         
+             //objtxt_to_speak.onend = (event) =>  {f_speech_end_fun(event) } ;
+         
+             f_speak_a_line(objtxt_to_speak, 2);
+         
+         } // end of f_speech_end_fun
+         
+         //----------------------------------------------------------
+         
+         function tts_3_end_speech() {
+         	
+         	console.log("%ctts_3_end_speech ", " color:blue;")
+         	
+             if (ele_last_play) {
+                 if (TTS_LOOP_swLoop == false) {
+                     ele_last_play.style.backgroundColor = null;
+                 }
+             }
+             tts_3_end_speech_calculation();
+         	
+         } // end of tts_3_end_speech()
+         
+         //--------------------------------------------
+         
+         function tts_3_end_speech_calculation() {
+         
+             // called by tts_3_end_speech() in cbc_player_script   and cbc_player_word_script
+         
+             var endTime = new Date();
+             var timeDiff = endTime - startTime; //actual elapsed time in ms 
+         
+             if (txt_length < 1) {
+                 return;
+             }
+         
+         
+             var normal_time = timeDiff * speech_rate;
+         
+             //-----------
+             tot_norm_time += normal_time;
+             tot_txt_len += txt_length;
+             tot_norm_mill_char = tot_norm_time / tot_txt_len;
+             tot_norm_str_leng_limit = ELAPSED_TIME_SPEECH_LIMIT / tot_norm_mill_char;
+             TXT_SPEECH_LENGTH_LIMIT = parseInt(tot_norm_str_leng_limit * speech_rate);
+         
+             f_loopManager();
+         
+         } // end of tts_3_end_speech_calculation() 
+         
+         //------------------------------------------
+         
+         function f_onclick_playSynthVoice_row3(this1, ixTD123, swPause, swNewVoice) {
+             //console.log("onclick_playSynthVoice_row3   totNumMyLangVoices=" ,totNumMyLangVoices, " lastNumVoice=",  lastNumVoice)
+             if (f_play_or_cancel(this1) < 0) {
+                 return;
+             }
+				if (okLocalStor) {
+					let ix = ixTD123 - 1; 
+					if (ix > 0) localStorage.setItem("lastrow",ix);
+				}
+             if (swNewVoice) {
+                 lastNumVoice++;
+                 if (lastNumVoice >= totNumMyLangVoices) lastNumVoice = 0; // to change voice on each cycle
+             } else {
+                 lastNumVoice = 0;
+             }
+             //console.log("2 onclick_tts_playSynthVoice_row2() lastNumVoice=" + lastNumVoice,  " listVox.length=",  listVox.length);  
+         	if (listVox.length == 0) {
+         		console.log("%cNon è stata caricata nessuna voce","color:red;")
+         		return;
+         	} 
+             voice_toUpdate_speech = listVox[lastNumVoice][1];
+         
+             let td1 = this1.parentElement;
+             let tr1 = td1.parentElement;
+         
+         	let txt3 = getSelectedText4( ixTD123 )
+         	   
+             //f_boldCell(tr1, this1, 0, "onclick_tts_playSynthVoice_row");
+         
+             
+         
+             if (swPause) {
+                 let ww1 = (txt3 + " ").replaceAll("–", " ").replaceAll("-", " ").
+                 replaceAll(", ", " ").replaceAll(" .", " ").replaceAll(". ", " ").replaceAll("...", " ").
+                 replaceAll("? ", " ").replaceAll("! ", " ").split(" ");
+                 txt3 = "";
+                 for (let g = 0; g < ww1.length; g++) {
+                     let ww2 = ww1[g].trim();
+                     if (ww2 != "") txt3 += ww2 + ". ";
+                 }
+             }
+             //console.log("4 onclick_tts_playSynthVoice_row2()  txt3="  + txt3 ); 	
+         
+             f_text_to_speech2(txt3, 3);
+         
+         } // end of onclick_tts_playSynthVoice_row3
+         
+         //------------------------
+         function getSelectedText4(numId) {
+         
+         	var selectedText = '';
+         
+         	// window.getSelection
+         	if (window.getSelection) {
+         		selectedText = window.getSelection();
+         	}
+         	// document.getSelection
+         	else if (document.getSelection) {
+         		selectedText = document.getSelection();
+         	}
+         	// document.selection
+         	else if (document.selection) {
+         		selectedText =
+         			document.selection.createRange().text;
+         	} else return;
+         	
+         	let toPlayTxt = selectedText.toString();
+         	
+         	let listOutRow = [] 
+         	
+         	if (toPlayTxt == "") {
+         		toPlayTxt = document.getElementById("idc_"  + numId).innerHTML;
+         		listOutRow.push([numId,toPlayTxt])	
+         	} else {		
+         		let idRiga = -1;
+         		let riga0 ="", riga1=""
+         		let rows = toPlayTxt.replaceAll("::", "§::").split("§") 
+         		for(let u=0; u < rows.length; u++) {
+         			let oneRow = rows[u]
+         			let part1 = oneRow.split("]")
+         			let oneParte = part1[0].trim(); 
+         			if (oneParte.substr(0,2) == "::") {
+         				riga0 = oneParte.substring(2).split("[") 
+         				riga1 = riga0[1].trim(); 
+         				idRiga = parseInt(riga0[0]); 
+         				listOutRow.push([idRiga,riga1])	
+         			} else {
+         				riga1 = oneParte
+         				listOutRow.push([-1,oneParte.trim()])	
+         			}
+         		} 			
+         	}
+         	//---
+         	
+         	if (listOutRow.length > 0) {
+         		if (listOutRow[0][0] < 0) {
+         			if (listOutRow.length > 1) listOutRow[0][0] = listOutRow[1][0] - 1 
+         			else listOutRow[0][0] = numId
+         		}
+         	}	
+         	
+         	toPlayTxt = ""
+         	for(let u=0; u < listOutRow.length; u++) {
+         		let ixRow = listOutRow[u][0]
+         		let row   = listOutRow[u][1]
+         		if (row.indexOf("*") >= 0) row = replaceAster(row,ixRow) 
+         		toPlayTxt += row + " " 
+         	}	
+         	
+         	//console.log("PLAY NEW %c" + toPlayTxt, "color:blue;")
+         	
+         	//??playTheText(toPlayTxt);
+         	return toPlayTxt 
+         	
+         	
+         } // end of getSelectedText4
+         
+		 //-------------------------
+		 function onclick_showHideAll(eleIcona) {
+			let eleTbody = document.getElementById("id_tbody1")
+			let eleCh  = eleTbody.children; 
+			if (eleIcona.children[1].style.display == "block") {   // se libro chiuso (la riga non si vede) allora apro il libro e mostro la riga
+				eleIcona.children[0].style.display ="block" 
+				eleIcona.children[1].style.display ="none" 				
+			} else {
+				eleIcona.children[0].style.display ="none" 
+				eleIcona.children[1].style.display ="block" 
+			}
+			let icon0 = eleIcona.children[0].style.display 
+			let icon1 = eleIcona.children[1].style.display 
+			
+			let eleChOne = eleCh[0];
+			let idtr1 = eleChOne.id.replace("idtr_",""); 
+			let numId = parseInt(idtr1) - 1;				
+			for(let h1=0; h1 < eleCh.length; h1++) {
+				numId++
+				let eleOrig = document.getElementById("idc_"  + numId) 
+				let eleAster= document.getElementById("idca_" + numId)
+				let eleIcona= document.getElementById("idb_" + numId)
+				eleIcona.children[0].style.display = icon0 
+				eleIcona.children[1].style.display = icon1 
+				eleOrig.style.display = icon0; 
+				eleAster.style.display = icon1;
+			}
+			
+			
+		 } // end of onclick_showHideAll
+		 
+         //--------------------------------------------------------------
+         function showHide(this1,numId) {
+         	let eleOrig = document.getElementById("idc_"  + numId)
+         	let eleAster= document.getElementById("idca_" + numId)
+			let eleIcona= document.getElementById("idb_" + numId)
+         	if (eleIcona.children[1].style.display == "block") {   // se libro chiuso (la riga non si vede) allora apro il libro e mostro la riga
+         		eleOrig.style.display = "block"; 
+         		eleAster.style.display = "none";
+				eleIcona.children[0].style.display ="block" 
+				eleIcona.children[1].style.display ="none" 
+         	} else {
+         		eleOrig.style.display = "none";
+         		eleAster.style.display = "block";
+				eleIcona.children[0].style.display ="none" 
+				eleIcona.children[1].style.display ="block" 
+         	}	
+         }
+         //--------------------------------------------------------------
+         function showTraduz(this1,numId) {
+         	let eleTran = document.getElementById("idt_" + numId)
+			let eleIcona= document.getElementById("idbT_" + numId)
+         	if (eleTran.style.visibility == "hidden") {
+				eleTran.style.visibility = "visible"; 
+				eleIcona.children[0].style.display ="block" 
+				eleIcona.children[1].style.display ="none" 
+			} else {
+				eleTran.style.visibility = "hidden";
+				eleIcona.children[0].style.display ="none" 
+				eleIcona.children[1].style.display ="block" 
+			}	
+         }
+         
+         //------------------------
+         function getPixelWidthHeight() {
+         
+         	var eleMsg = document.getElementById("id_msg1")
+         	
+         	let w = window.innerWidth;
+         	let h = window.innerHeight;
+         	
+         	let tab1 = document.getElementById("id_tab1")	
+         	let tr1 = document.getElementById("idtr_1") 
+         	let td1 = tr1.children[0]
+         	let td1butt1 = td1.children[0].children[0]	
+         	let txt1 = document.getElementById("idc_1") 
+         	
+         	let retTab1 = tab1.getBoundingClientRect()
+         	let retButt = td1butt1.getBoundingClientRect()
+         	let retTxt1 = txt1.getBoundingClientRect()
+         	
+         	let msg1 = '<div style="text-align:center;width:100%;padding-left:40%;">' + "<table>"
+         	msg1 += "<tr><td>       </td><td>width px</td><td>height px" + "</td></tr>";
+         	msg1 += "<tr><td>Browser</td><td>" + parseInt(w)           +  "</td><td>" + parseInt( h)            + "</td></tr>";
+         	
+         	msg1 += "<tr><td>tab1 </td><td>" + parseInt(retTab1.width) +  "</td><td>" + parseInt(retTab1.height)+ "</td></tr>";
+         	msg1 += "<tr><td>butt1</td><td>" + parseInt(retButt.width) +  "</td><td>" + parseInt(retButt.height)+ "</td></tr>";
+         	msg1 += "<tr><td>txt1</td><td>"  + parseInt(retTxt1.width) +  "</td><td>" + parseInt(retTxt1.height)+ "</td></tr>";
+         	msg1 += "</table></div>"
+         	eleMsg.innerHTML = msg1
+         
+         } // end of getPixelWidthHeight
+         
+ 
+//--------------------
+
+function showRandomRow() {
+	let eleBody = document.getElementById("id_tbody1") 
+	if (eleBody) { console.log("eleTbody OK") } else { console.log("eleTbody error") }
+	let numCh1 = eleBody.children.length ;  
+	let ix = Math.floor(Math.random() * numCh1);
+	let eleTr = eleBody.children[ix]	
+	eleTr.scrollIntoView();
+	//eleTr.style.backgroundColor = "yellow";
+}		 
+//-----------------------------		
+function getLastRow() {
+	let eleBody = document.getElementById("id_tbody1") 
+	if (eleBody) { console.log("eleTbody OK") } else { console.log("eleTbody error") }
+	let numCh1 = eleBody.children.length ; 
+	
+	let eleMsg0 = document.getElementById("id_msg0");
+	let ix = 0;
+	// Check browser support
+	if (typeof(Storage) !== "undefined") {
+		okLocalStor = true
+	 
+	  // Retrieve
+	  ix = localStorage.getItem("lastrow");
+	  eleMsg0.innerHTML = "lastRow index = " + ix
+		ix = parseInt( ix )
+		
+	} else {
+	  eleMsg0.innerHTML = "Sorry, no Web storage support!";
+	}
+	if (isNaN(ix) == false) {
+		if (ix >= numCh1) ix=0	
+		let eleTr = eleBody.children[ix]	
+		eleTr.scrollIntoView();
+	}
+
+
+} // end of getLastRow() 
+//-----------------------------------------------
+ function onclick_change_fontSize(this1, step1, min1, max1, numDig1) {	
+	let eleValue = this1.parentElement.children[1]	
+	let newValue = stepUpDown(eleValue,step1,min1,max1,numDig1) 	
+	document.body.style.fontSize = newValue + "em"; 
+	eleValue.innerHTML = newValue; 
+ } // 
+   //--------------------
+     function onclick_tts_changeRate(this1, step1, min1, max1, numDig1) {
+             let eleValue = this1.parentElement.children[1];
+			 let newValue = stepUpDown(eleValue,step1,min1,max1,numDig1) 	
+			 let rate = parseFloat(newValue)
+             if (rate < 0.1) rate = 0.1;
+             last_rate = rate;
+             this1.value = rate;
+             speech_rate = rate;
+             if (last_objtxt_to_speak) last_objtxt_to_speak.rate = rate;			 
+             eleValue.innerHTML = rate;
+         }
+         
+ 
+ //------
+
+function stepUpDown(eleValue, step1, min1, max1, numDig1) {
+	
+	step1 = 1*step1; min1=1*min1; max1 = 1*max1; numDig1 = numDig1*1
+	let thisValue = parseFloat(eleValue.innerHTML) 	
+	thisValue += step1	
+	if (thisValue < min1) thisValue = min1 
+	if (thisValue > max1) thisValue = max1 	
+	return ((thisValue*1.0000001)+"").substr(0,numDig1) 
+}
+//----------------------------------------------------------- 	 
+		 
+//------------------ 
+function TOGLIstepUpDown(this1,step1,min1,max1) {
+	let eleValue = this1.parentElement.children[1]	
+	step1 = 1*step1; min1=1*min1; max1 = 1*max1;
+	thisValue = parseFloat(eleValue.innerHTML) 
+	thisValue += step1
+	if (thisValue < min1) thisValue = min1 
+	if (thisValue > max1) thisValue = max1 
+	eleValue.innerHTML = ((thisValue*1.0000001)+"").substr(0,4)
+}
+//----------------------------------------------------------- 	 
+		 
+		 
+      </script>
+	  
+	  
+</html>

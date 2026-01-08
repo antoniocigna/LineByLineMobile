@@ -1,0 +1,30 @@
+
+	LineByLine Mobile
+	-----------------
+	Antonio Cigna gennaio 2026 
+	
+	Questa applicazione per cellulare o desktop  serve per esercitarsi nella comprensione di una lingua straniera.
+	
+	Consente di ascoltare un testo una riga per volta o anche una parola per volta, 
+		e di provare ad indovinarne il senso tenendo la traduzione nascosta. 
+		
+	L'utente può scegliere le riga, le parole o le porzioni di testo su cui esercitarsi
+		
+
+	All'inizio viene chiesto di selezionare il file di testo da usare.
+
+	Il testo deve essere composto da gruppi di 3 righe: una riga in lingua straniera, una con la traduzione ed una riga vuota
+
+	Questo file di input può essere ottenuto manualmente o usando il file LineByLineMobile_Build.html
+	Usando LineByLineMobile_Build.html  
+		Bisogna copiare (copia e incolla) il testo originale e la traduzione ottenuta da un tradaduttore automatico (es. google, bing, reverse)
+		I due testi vengono appaiati riga per riga e poi scritti in un solo file
+		
+		
+		
+		
+
+
+	
+	
+	
