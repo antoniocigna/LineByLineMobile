@@ -385,8 +385,8 @@ function onclick_tts_getInput_New(elepage) {
 	let txt1, txt2
 	for (let h = 0; h < eleTbody.children.length; h++) {
 		let eleTr = eleTbody.children[h]
-		txt1 = eleTr.children[0].innerHTML.trim()
-		txt2 = eleTr.children[6].innerHTML.trim()
+		txt1 = eleTr.children[0].innerHTML.replaceAll("&nbsp;"," ").replaceAll("<br>"," ").trim();
+		txt2 = eleTr.children[6].innerHTML.replaceAll("&nbsp;"," ").replaceAll("<br>"," ").trim();
 		if ((txt1 == "") && (txt2 == "")) continue
 		outStr += txt1 + "\n" + txt2 + "\n\n";
 	}
