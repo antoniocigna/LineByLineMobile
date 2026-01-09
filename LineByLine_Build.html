@@ -366,9 +366,10 @@ function fun_newTrRowString(z1, txtOrig, txtTran) {
 //---------------------------------------
 function fun_txt2row(str1) {	
 	
-	const str3 = str1.replaceAll(". ", ".\n").
-	replaceAll("! ", "!\n").replaceAll("? ", "?\n").
-	replaceAll("; ", ";\n");
+	const str3 = str1.replaceAll("z.B.", "zum Beispiel").replaceAll("z. B.","zum Beispiel").
+		replaceAll(". ", ".\n").
+		replaceAll("! ", "!\n").replaceAll("? ", "?\n").
+		replaceAll("; ", ";\n").replaceAll("zum Beispiel", "z.B.");
 	return str3.split("\n");
 
 } // end of fun_txt2row 
