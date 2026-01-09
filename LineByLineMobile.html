@@ -36,7 +36,7 @@
 
 	</script>	
 	<div style="border:1px solid black; font-size:0.8em;padding: 0.2em;">
-		<div style="text-align:center;"><b>HELP</b></div>
+		<div><b>HELP</b></div>
 		<button onclick="showDiv(this)"><b>Nome e Contenuto del file</b></button>  
 		<div style="border:0px solid black;display:none;">
 			<b>Nome del file</b>
@@ -166,36 +166,31 @@
 								<span style="display:none;font-weight:bold;"><span style="font-weight:bold;">T</span></span>
 								<span style="display:block;font-weight:bold;"><span style="font-weight:bold;min-width:4em;">t?</span></span>
 							</button>							
-						</div>  
-						
-
-					
-						<div style="position: relative;">
-							
+						</div> 					
+						<div style="position: relative;">							
 							<div style="position: absolute; top: -0.7em; left:-0.6em;">
 								<span class="minFont">::</span>
 								<span id="idNumTr" class="numTr">§x1§</span>
 								<span class="minFont">[</span>
-							</div>	
-							
+							</div>								
 							<table>
 								<tbody>
 								   <tr> 								
 									  <td class="suboLine  maxTdLen">
 										 <div>
-											<span id="idc_§x1§" style="display:block;">§orig§</span>									
-											<span class="minFont">]</span>
-											<span id="idca_§x1§" style="display:none;font-size:0.8em;"></span>
+											<span id="idc_§x1§" style="display:block;">§orig§</span>
+											<span id="idca_§x1§" style="display:none;"></span>
 										 </div>								  
 									  </td>
 								   </tr>
 								   <tr>
-									  <td class="tranLine">
+									  <td class="tranLine">																			
+										 <span class="minFont">]</span>
 										 <span id="idt_§x1§" style="visibility:hidden;">§traduz§</span>							
 									  </td>
 								   </tr>
 								</tbody>
-							</table>
+							</table>							
 						</div>	
 					</div>
                   </td>
@@ -221,33 +216,34 @@
       <div id="id_div30" style="display: none; text-align: left; border: 5px solid violet;height:100%;">
          <div  style="display: block; text-align: left; border: 0px solid blue;width:98%;">
 				 <div style="">
-						<button  class="buttonTD3" id="idHSupper" onclick="upperShowHide(this)">							
-								<span style="display:block;">nascondi sopra</span>														
-								<span style="display:none;">mostra sopra</span>
+						<button  class="buttonTD2"  id="idHSupper" onclick="upperShowHide(this)">						
+								<span style="display:block;">&#8681;</span>														
+								<span style="display:none;">&#8679;</span>
 						</button>
-						&nbsp;&nbsp;
-						<button  class="buttonTD2" onclick="showRandomRow()">una riga a caso</button> 
-				</div> 
-			
-               
-			   
-               <div style="border:0px solid black;padding:0 0.5em;padding:0.5em;">
-                  <span id="m127" class="msg">Velocità </span></span>
-                  <span style="width:0.5em;padding:0;">1</span>
-                  &nbsp;&nbsp;
-				  <button type="button" onclick="onclick_tts_changeRate(this,-0.1, 0.1, 2.0, 3)">-</button>&nbsp;&nbsp;
-				  <button type="button" onclick="onclick_tts_changeRate(this, 0.1, 0.1, 2.0, 3)">+</button>                  
-               </div>
-               <div style="border:0px solid black;display:flex;padding:0.5em;">
-                  <div><button id="id_sp_pause"   class="buttonTD3" onclick="onclick_tts_speech_pause()"><span id="m128" class="msg">Pausa</span></button></div>
-                  <div><button id="id_sp_resume"  class="buttonTD3" onclick="onclick_tts_speech_resume()"><span id="m129" class="msg">Riprendi</span></button></div>
-                  <div><button id="id_sp_cancel"  class="buttonTD3" onclick="onclick_tts_speech_cancel()"><span id="m130" class="msg">Annulla</span></button></div>
-                  <div>
-						<button id="id_sp_readAll"  class="buttonTD3" style="background-color:white;" onclick="onclick_showHideAll(this)">
+						&nbsp;
+						<button  class="buttonTD2" onclick="showRandomRow()"><b>random</b></button> 
+						&nbsp;
+						<button id="id_sp_readAll"  class="buttonTD2" onclick="onclick_showHideAll(this)">
 								<span style="display:block;">📖</span>
 								<span style="display:none;">📕</span>
-						</button>               
-                  </div>
+						</button>   
+						&nbsp;
+						<button id="id_sp_tranAll" class="buttonTD2" onclick="onclick_showHideTrad(this)">
+								<span style="display:none;font-weight:bold;"><span style="font-weight:bold;">T</span></span>
+								<span style="display:block;font-weight:bold;"><span style="font-weight:bold;min-width:4em;">t?</span></span>
+						</button>						
+				</div> 
+               <div style="border:0px solid black;margin-top:0.5em;">
+                  <span id="m127" class="msg"><b>Velocità</b></span></span>
+                  <span style="width:0.5em;padding:0;">1</span>
+                  &nbsp;&nbsp;
+				  <button class="buttonTD2" onclick="onclick_tts_changeRate(this,-0.1, 0.1, 2.0, 3)">-</button>&nbsp;&nbsp;
+				  <button class="buttonTD2" onclick="onclick_tts_changeRate(this, 0.1, 0.1, 2.0, 3)">+</button>                  
+               </div>
+               <div style="border:0px solid black;display:flex;margin-bottom:0.5em;">
+                  <div><button id="id_sp_pause"   class="buttonTD2" onclick="onclick_tts_speech_pause()"><span id="m128" class="msg">Pausa</span></button></div>
+                  <div><button id="id_sp_resume"  class="buttonTD2" onclick="onclick_tts_speech_resume()"><span id="m129" class="msg">Riprendi</span></button></div>
+                  <div><button id="id_sp_cancel"  class="buttonTD2" onclick="onclick_tts_speech_cancel()"><span id="m130" class="msg">Annulla</span></button></div>                  
                </div>
          </div>
 		 
@@ -307,9 +303,12 @@
          font-weight: bold;
          }
          .buttonTD3 {
-         background-color: lightgrey;
-         border: 1px solid #000000;
-         color: black;
+		  min-width:2.5em;
+		  font-size:0.9em;
+         background-color: white;
+         border: 1.5px solid black;
+		  color: black; font-weight:bold;
+         
          text-align:center;
          padding-left:0.3em;
          padding-right:0.3em;   
@@ -320,9 +319,11 @@
          }
 		 
 		  .buttonTD2 {
+		  min-width:2.5em;
+		  font-size:0.9em;
          background-color: white;
          border: 1px solid #000000;
-         color: black;
+        color: black; font-weight:bold;
          text-align:center;
          padding-left:0.3em;
          padding-right:0.3em;   
@@ -371,10 +372,11 @@
          }
 		 
 
-		 
+	/**	 
 	.budSpace {
 	margin:0.5em;
 	font-size:1.0em;
+	**/
 }	 
 		 
       </style>
@@ -1044,7 +1046,7 @@
              for (var f = 0; f < listaParole.length; f++) {        
          			let parola = listaParole[f]
          			let len1   = parola.length
-                     listaAster += "***"+ (f+1) + "*** ";        
+                     listaAster += "**"+ (f+1) + "** ";        
              }
          	//console.log("listaAster = ", listaAster)
          	document.getElementById(id_aster).innerHTML = listaAster
@@ -1914,17 +1916,19 @@
          
 		 //-------------------------
 		 function onclick_showHideAll(eleIcona) {
-			let eleTbody = document.getElementById("id_tbody1")
-			let eleCh  = eleTbody.children; 
+		
 			if (eleIcona.children[1].style.display == "block") {   // se libro chiuso (la riga non si vede) allora apro il libro e mostro la riga
 				eleIcona.children[0].style.display ="block" 
 				eleIcona.children[1].style.display ="none" 				
 			} else {
 				eleIcona.children[0].style.display ="none" 
 				eleIcona.children[1].style.display ="block" 
-			}
+			}			
 			let icon0 = eleIcona.children[0].style.display 
 			let icon1 = eleIcona.children[1].style.display 
+			
+			let eleTbody = document.getElementById("id_tbody1")
+			let eleCh  = eleTbody.children; 
 			
 			let eleChOne = eleCh[0];
 			let idtr1 = eleChOne.id.replace("idtr_",""); 
@@ -1942,6 +1946,39 @@
 			
 			
 		 } // end of onclick_showHideAll
+		 
+		  //-------------------------
+		 function onclick_showHideTrad(eleIcona) {	
+			let icon0, icon1;
+			if (eleIcona.children[1].style.display == "block") {   // se libro chiuso (la riga non si vede) allora apro il libro e mostro la riga
+				eleIcona.children[0].style.display ="block" 
+				eleIcona.children[1].style.display ="none" 	
+				icon0 = "visible";
+			} else {
+				eleIcona.children[0].style.display ="none" 
+				eleIcona.children[1].style.display ="block" 
+				icon0 = "hidden";
+			}			
+			
+			let eleTbody = document.getElementById("id_tbody1")
+			let eleCh  = eleTbody.children; 	
+			
+			let eleChOne = eleCh[0];
+			let idtr1 = eleChOne.id.replace("idtr_",""); 
+			let numId = parseInt(idtr1) - 1;				
+			for(let h1=0; h1 < eleCh.length; h1++) {
+				numId++
+				let eleTran = document.getElementById("idt_"  + numId) 
+				let eleIcon2= document.getElementById("idbT_" + numId)
+				eleIcon2.children[0].style.display = icon0 
+				eleIcon2.children[1].style.display = icon1 
+				eleTran.style.visibility = icon0; 
+			}
+			
+			
+		 } // end of onclick_showHideAll
+		 
+		 
 		 
          //--------------------------------------------------------------
          function showHide(this1,numId) {
